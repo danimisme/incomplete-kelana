@@ -14,11 +14,25 @@ export default function RegisterForm() {
     setSection(section === 1 ? 2 : 1);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const userData = {
+      email: e.target.email.value,
+      name: e.target.name.value,
+      password: e.target.password.value,
+      passwordRepeat: e.target.passwordRepeat.value,
+      role: e.target.role.value,
+      profilePictureUrl: e.target.profilePictureUrl.value,
+      phoneNumber: e.target.phoneNumber.value,
+    };
+    console.log(userData);
+  };
+
   return (
     <div>
       <h1>Register</h1>
       <p>input your data </p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <div
             className={`col-md-6  ${
@@ -66,11 +80,11 @@ export default function RegisterForm() {
             <div className="form-floating mb-3">
               <Input
                 type="number"
-                name="phone"
+                name="phoneNumber"
                 id="phone"
                 placeholder="Phone Number"
               />
-              <Label htmlFor="phone">Phone Number</Label>
+              <Label htmlFor="phoneNumber">Phone Number</Label>
             </div>
             <div className="form-floating mb-3">
               <Input type="text" name="role" id="role" placeholder="role" />
