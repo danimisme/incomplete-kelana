@@ -1,14 +1,14 @@
 export default function CheckBox({ value, children, id, ...props }) {
   return (
-    <div class="form-check">
+    <div className="form-check">
       <input
-        class="form-check-input"
+        className="form-check-input"
         type="checkbox"
         value={value}
         id={id}
         {...props}
       />
-      <label class="form-check-label" for={id}>
+      <label className="form-check-label" htmlFor={id}>
         {children}
       </label>
     </div>
