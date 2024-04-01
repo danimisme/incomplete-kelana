@@ -37,6 +37,12 @@
         transform: translateX(0);
         opacity: 1;
     }
+
+    .btn_register , .btn_register_hide { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+
     .btn-next-form {
         display: none;
     }
