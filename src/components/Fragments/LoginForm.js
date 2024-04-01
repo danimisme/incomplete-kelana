@@ -4,8 +4,11 @@ import Input from "../Elements/input/Input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
+import CheckBox from "../Elements/CheckBox";
 
 export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +52,12 @@ export default function LoginForm() {
           />
           <Label htmlFor="email"> Your Email </Label>
         </div>
+        <CheckBox
+          id={"showPassword"}
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          Show Password
+        </CheckBox>
         <div className="form-floating mb-3">
           <Input
             type="password"
