@@ -1,0 +1,43 @@
+.register_1 {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s ease;
+}
+.register_1_hide {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.register_2 {
+    opacity: 1;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+}
+.register_2_hide {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+}
+
+.btn_register {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.5s ease;
+}
+.btn_register_hide {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+}
+
+@media only screen and (max-width: 1200px) {
+    .register_1 , .register_2 , .register_1_hide , .register_2_hide { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+    .btn-next-form {
+        display: none;
+    }
+  }
