@@ -3,6 +3,7 @@ import Label from "../Elements/input/Label";
 import Input from "../Elements/input/Input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -60,7 +61,7 @@ export default function LoginForm() {
         <button className="btn btn-primary">Login</button>
       </form>
       <p className="mt-3">
-        Don&apos;t have an account? <a href="/register">Register</a>
+        Don&apos;t have an account? <Link href="/register">Register</Link>
       </p>
     </div>
   );
