@@ -36,6 +36,7 @@
     .register_1 , .register_2 , .register_1_hide , .register_2_hide { 
         transform: translateX(0);
         opacity: 1;
+        pointer-events: all;
     }
 
     .btn_register , .btn_register_hide { 
