@@ -31,8 +31,12 @@ export default function useAuth() {
           },
         }
       );
-
-      callback(res.data.data);
+      if (url === "logout") {
+        localStorage.removeItem("token");
+        callback(res);
+      } else if (url === "user") {
+        callback(res.data.data);
+      }
     } catch (error) {
       console.log(error);
     }
