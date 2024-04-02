@@ -20,7 +20,7 @@ export default function LoginForm() {
     };
 
     await auth("login", userData);
-    router.push("/");
+    window.location.href = "/";
   };
 
   return (
