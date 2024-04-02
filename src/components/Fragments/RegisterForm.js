@@ -1,22 +1,23 @@
 "use client";
-import axios from "axios";
 import Link from "next/link";
 import CheckBox from "../Elements/CheckBox";
 import Input from "../Elements/input/Input";
 import Label from "../Elements/input/Label";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useAuth from "@/services/useAuth";
 
 export default function RegisterForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [section, setSection] = useState(1);
+  const { auth } = useAuth();
 
   const changeSection = () => {
     setSection(section === 1 ? 2 : 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = {
       email: e.target.email.value,
@@ -27,26 +28,8 @@ export default function RegisterForm() {
       profilePictureUrl: e.target.profilePictureUrl.value,
       phoneNumber: e.target.phoneNumber.value,
     };
-
-    handleRegister(userData);
-  };
-
-  const handleRegister = async (data) => {
-    try {
-      await axios.post(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/register`,
-        data,
-        {
-          headers: {
-            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-          },
-        }
-      );
-
-      router.push("/login");
-    } catch (error) {
-      console.log(error);
-    }
+    await auth("register", userData);
+    router.push("/login");
   };
 
   return (
