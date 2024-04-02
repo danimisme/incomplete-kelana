@@ -1,5 +1,10 @@
 import RegisterForm from "@/components/Fragments/RegisterForm";
 
+export const metadata = {
+  title: "Register",
+  description: "Register to your account",
+};
+
 export default function RegisterPage() {
   return (
     <div className="row d-flex vh-100 align-items-center justify-content-center">
