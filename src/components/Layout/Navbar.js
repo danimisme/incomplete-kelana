@@ -1,13 +1,36 @@
 "use client";
+import useAuth from "@/services/useAuth";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const { userLog } = useAuth();
+  const [user, setUser] = useState({});
+  const router = useRouter();
+
+  useEffect(() => {
+    getUserLogged();
+  }, []);
+
+  const getUserLogged = () => {
+    if (localStorage.getItem("token")) {
+      userLog("user", (res) => {
+        setUser(res);
+      });
+    }
+  };
+
+  const logout = async () => {
+    await userLog("logout");
+    setUser({});
+    router.push("/login");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-lg justify-content-between align-items-start">
-        <Link href="/" className="navbar-brand">
-          Kelana
-        </Link>
+        <h2>Kelana</h2>
         <div className="align-items-end text-end ">
           <button
             className="navbar-toggler"
@@ -46,29 +69,38 @@ export default function Navbar() {
                 </Link>
               </li>
             </ul>
-            <div className="nav-link dropdown ms-md-5">
+            {user.name ? (
+              <div className="nav-link dropdown ms-md-5">
+                <Link
+                  href="/"
+                  className="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {user.name}
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link href="/" className="dropdown-item">
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={logout} className="dropdown-item">
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
               <Link
-                href="/"
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                href="/login"
+                className="btn btn-outline-primary btn-sm ms-5"
               >
-                Muhammad Subhan Ramdhani
+                Login
               </Link>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link href="/" className="dropdown-item">
-                    Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="dropdown-item">
-                    Logout
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            )}
           </div>
         </div>
       </div>
