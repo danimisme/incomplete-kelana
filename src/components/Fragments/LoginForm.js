@@ -1,41 +1,26 @@
 "use client";
 import Label from "../Elements/input/Label";
 import Input from "../Elements/input/Input";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import CheckBox from "../Elements/CheckBox";
+import useAuth from "@/services/useAuth";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  const handleSubmit = (e) => {
+  const { auth } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = {
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
-    handleLogin(userData);
-  };
-
-  const handleLogin = async (data) => {
-    try {
-      await axios.post(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/login`,
-        data,
-        {
-          headers: {
-            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-          },
-        }
-      );
-
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
+    await auth("login", userData);
+    router.push("/");
   };
 
   return (
