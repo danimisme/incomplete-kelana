@@ -28,10 +28,13 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-lg justify-content-between align-items-start">
-        <h2>Kelana</h2>
-        <div className="align-items-end text-end ">
+    <nav className="navbar fixed-top navbar-expand-lg bg-transparent">
+      <div className="container-lg justify-content-between align-items-center">
+        <div className="navbar-brand">
+          <h2 className="m-0">Kelana</h2>
+        </div>
+
+        <div className="align-items-end text-end border ">
           <button
             className="navbar-toggler"
             type="button"
@@ -43,65 +46,68 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div
-            className="collapse navbar-collapse justify-content-between "
-            id="navbarSupportedContent"
-          >
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link href="/" className="nav-link active" aria-current="page">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/" className="nav-link">
-                  Promo
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link
-                  href="/"
-                  className="nav-link disabled"
-                  aria-disabled="true"
-                >
-                  Category
-                </Link>
-              </li>
-            </ul>
-            {user.name ? (
-              <div className="nav-link dropdown ms-md-5">
-                <Link
-                  href="/"
-                  className="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  {user.name}
-                </Link>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link href="/" className="dropdown-item">
-                      Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <button onClick={logout} className="dropdown-item">
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            ) : (
-              <Link
-                href="/login"
-                className="btn btn-outline-primary btn-sm ms-5"
-              >
-                Login
+        </div>
+        <div
+          className="collapse navbar-collapse justify-content-center "
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            <li className="nav-item ms-lg-3">
+              <Link href="/" className="nav-link active" aria-current="page">
+                Home
               </Link>
-            )}
-          </div>
+            </li>
+            <li className="nav-item ms-lg-3">
+              <Link href="/" className="nav-link">
+                Promo
+              </Link>
+            </li>
+
+            <li className="nav-item ms-lg-3">
+              <Link href="/" className="nav-link disabled" aria-disabled="true">
+                Category
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div
+          className="collapse navbar-collapse justify-content-end align-items-start "
+          id="navbarSupportedContent"
+        >
+          {user.name ? (
+            <div className="nav-link dropdown ">
+              <Link
+                href="/"
+                className="nav-link dropdown-toggle d-flex align-items-center"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src={user.profilePictureUrl}
+                  alt={user.name}
+                  className="img-fluid rounded-circle me-2 profile_picture"
+                />
+                <p className="m-0">{user.name}</p>
+              </Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link href="/" className="dropdown-item">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <button onClick={logout} className="dropdown-item">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link href="/login" className="btn btn-outline-primary btn-sm ">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
