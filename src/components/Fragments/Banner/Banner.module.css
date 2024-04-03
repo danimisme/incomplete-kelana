@@ -1,3 +1,30 @@
 .banner img {
-    width: 300px;
+    width: 90%;
+    aspect-ratio: 5/6;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: brightness(60%);
+}
+
+.banner img:hover {
+    filter: brightness(100%);
+}
+
+.banner {
+    position: relative;
+    top: -180px;
+    width: 70%;
+    margin: auto;
+    padding-left: 2%;
+    padding-top: 5px;
+
+}
+
+.banner h3 {
+    position: relative;
+    top: -3rem;
+    color: white;
+    text-shadow: 0 0 10px black;
+    text-align: center;
+    font-weight: 400;
 }
