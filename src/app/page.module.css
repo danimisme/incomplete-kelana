@@ -1,0 +1,18 @@
+.jumbotron {
+    background-image: url('/images/jumbotron.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+    
+}
+
+.text_shadow {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+@media only screen and (max-width: 1200px) {
+    .jumbotron {
+        max-height: 70vh;
+    }
+  }
