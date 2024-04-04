@@ -1,4 +1,5 @@
 "use client";
+import styles from "./Promo.module.css";
 import React from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -11,7 +12,7 @@ export default function Promo() {
   const handleDragStart = (e) => e.preventDefault();
   const responsive = {
     0: {
-      items: 3,
+      items: 2,
     },
     568: {
       items: 3,
@@ -25,26 +26,22 @@ export default function Promo() {
   useEffect(() => {
     getData("promos").then((res) => setPromos(res.data.data));
   }, []);
-  console.log(promos);
   return (
-    <div>
-      <h1>Promo</h1>
+    <div className={`${styles.promo_container} container-fluid`}>
+      <h2 className="py-3 fw-bold">Promo Spesial Untuk Kamu !</h2>
       <AliceCarousel
         mouseTracking
         autoPlay
         autoPlayInterval={2000}
         infinite
         disableButtonsControls
-        // disableDotsControls
-        // onSlideChange={handleOnSlideChange}
-        // onSlideChanged={handleOnSlideChanged}
+        disableDotsControls
         responsive={responsive}
       >
         {promos.map((promo) => (
           <div
             key={promo.id}
-            className="card bg-transparent"
-            style={{ width: "18rem" }}
+            className="card bg-transparent mx-3"
             onDragStart={handleDragStart}
           >
             <img
