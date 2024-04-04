@@ -45,6 +45,7 @@ export default function Promo() {
             key={promo.id}
             className="card bg-transparent"
             style={{ width: "18rem" }}
+            onDragStart={handleDragStart}
           >
             <img
               src={promo.imageUrl}
