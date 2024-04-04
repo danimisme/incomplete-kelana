@@ -1,4 +1,5 @@
 "use client";
+import { Quicksand } from "next/font/google";
 import styles from "./Promo.module.css";
 import React from "react";
 import AliceCarousel from "react-alice-carousel";
@@ -6,10 +7,15 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { useEffect, useState } from "react";
 import useGetData from "@/services/useGetData";
 
+const quicksand = Quicksand({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 export default function Promo() {
   const [promos, setPromos] = useState([]);
   const { getData } = useGetData();
   const handleDragStart = (e) => e.preventDefault();
+
   const responsive = {
     0: {
       items: 2,
@@ -27,8 +33,10 @@ export default function Promo() {
     getData("promos").then((res) => setPromos(res.data.data));
   }, []);
   return (
-    <div className={`${styles.promo_container} container-fluid`}>
-      <h2 className="py-3 fw-bold">Promo Spesial Untuk Kamu !</h2>
+    <div
+      className={`${styles.promo_container} ${quicksand.className} container-fluid`}
+    >
+      <h2 className="p-3 fw-bold">Promo Spesial Untuk Kamu !</h2>
       <AliceCarousel
         mouseTracking
         autoPlay
