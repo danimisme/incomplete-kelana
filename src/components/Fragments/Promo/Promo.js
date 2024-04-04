@@ -18,10 +18,10 @@ export default function Promo() {
 
   const responsive = {
     0: {
-      items: 2,
+      items: 1,
     },
     568: {
-      items: 3,
+      items: 2,
     },
     800: {
       items: 4,
@@ -39,10 +39,20 @@ export default function Promo() {
       <h2 className="p-3 fw-bold">Promo Spesial Untuk Kamu !</h2>
       <AliceCarousel
         mouseTracking
-        autoPlay
-        autoPlayInterval={2000}
+        // autoPlay
+        // autoPlayInterval={2000}
         infinite
-        disableButtonsControls
+        // disableButtonsControls
+        renderNextButton={() => (
+          <i
+            className={`bi bi-arrow-right-short fs-1 ${styles.arrow_button} ${styles.arrow_button_right}`}
+          ></i>
+        )}
+        renderPrevButton={() => (
+          <i
+            className={`bi bi-arrow-left-short fs-1 ${styles.arrow_button} ${styles.arrow_button_left}`}
+          ></i>
+        )}
         disableDotsControls
         responsive={responsive}
       >
