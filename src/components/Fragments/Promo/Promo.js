@@ -1,5 +1,6 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import styles from "./Promo.module.css";
 import useGetData from "@/services/useGetData";
 
 export default function Promo() {
