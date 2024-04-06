@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import useGetData from "@/services/useGetData";
 import moment from "moment";
+import styles from "./DetailPromoPage.module.css";
 
 export default function DetailPromoPage({ params }) {
   const { getData } = useGetData();
@@ -10,13 +11,16 @@ export default function DetailPromoPage({ params }) {
     getData(`promo/${params.id}`).then((res) => setPromo(res.data.data));
   }, []);
 
-  console.log(promo);
   return (
-    <div className="mt-5 container-lg">
+    <div className={`${styles.detail_container} mt-5 container-lg`}>
       <div className="py-5 row">
         <h1 className="mb-3 text-lg-start text-center">Detail Promo</h1>
         <div className="col-lg-6 col-10 mx-auto">
-          <img src={promo.imageUrl} alt={promo.title} className="img-fluid" />
+          <img
+            src={promo.imageUrl}
+            alt={promo.title}
+            className={` ${styles.image}`}
+          />
         </div>
         <div className="col-lg-6 col-10 mx-auto mt-3">
           <h3>{promo.title}</h3>
@@ -52,7 +56,7 @@ export default function DetailPromoPage({ params }) {
           </p>
           <p className="m-3 border-bottom">
             <span className="fw-bold">Last Update : </span>
-            {moment(promo.updatedAt).format("DD MMMM YYYY  HH:mm:ss")}
+            {moment(promo.updatedAt).format("DD MMMM YYYY HH:mm:ss")}
           </p>
         </div>
       </div>
