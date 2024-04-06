@@ -16,7 +16,7 @@ export default function Banner() {
   const { getData } = useGetData();
   const handleDragStart = (e) => e.preventDefault();
   const responsive = {
-    0: {
+    375: {
       items: 1,
     },
     568: {
