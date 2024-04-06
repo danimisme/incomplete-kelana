@@ -1,6 +1,7 @@
 "use client";
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
+import styles from "./Activities.module.css";
 
 export default function Activities() {
   const [activities, setActivities] = useState([]);
@@ -30,11 +31,13 @@ export default function Activities() {
                     {activity.rating}
                   </p>
                   <div className="card-body">
-                    <h5 className="card-title">{activity.title}</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </p>
+                    <div>
+                      <h6 className="card-title">{activity.title}</h6>
+                      <p className="text-muted fs-6">
+                        <i className="bi bi-geo-alt-fill text-success"></i>
+                        {` ${activity.city}, ${activity.province}`}{" "}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
