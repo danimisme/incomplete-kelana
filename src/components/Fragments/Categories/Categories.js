@@ -27,8 +27,8 @@ export default function Categories() {
   }, []);
 
   return (
-    <div className={`${styles.categories} mt-3 ps-3`}>
-      <h2>
+    <div className={`${styles.categories} mt-3 container-fluid `}>
+      <h2 className="p-3">
         <i className="bi bi-geo-alt-fill"></i> Temukan Yang Kamu Sukai
       </h2>
       <AliceCarousel
@@ -48,7 +48,7 @@ export default function Categories() {
         responsive={responsive}
       >
         {Categories.map((category) => (
-          <div key={category.id}>
+          <div key={category.id} className="mx-3">
             <p className="position-absolute p-3 fw-bold text-white bg-dark rounded bg-opacity-75">
               {category.name}
             </p>
