@@ -2,7 +2,6 @@ import { Merriweather, Gothic_A1 } from "next/font/google";
 import styles from "./page.module.css";
 import Banner from "@/components/Fragments/Banner/Banner";
 import Promo from "@/components/Fragments/Promo/Promo";
-import Category from "@/components/Fragments/Categories/Categories";
 import Categories from "@/components/Fragments/Categories/Categories";
 import Activities from "@/components/Fragments/Activities/Activities";
 
