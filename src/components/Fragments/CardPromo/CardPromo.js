@@ -6,7 +6,7 @@ export default function CardPromo({ promo }) {
       <div className={`${styles.card} card`}>
         <img
           src={promo.imageUrl}
-          className={`${styles.card_promo} card-img-top`}
+          className={`${styles.card_image} card-img-top`}
           alt="..."
         />
         <div className="card-body">
