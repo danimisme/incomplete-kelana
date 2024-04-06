@@ -5,13 +5,42 @@ import styles from "./Activities.module.css";
 
 export default function Activities() {
   const [activities, setActivities] = useState([]);
+  const [categories, setCategories] = useState([]);
   const { getData } = useGetData();
   useEffect(() => {
     getData("activities").then((res) => setActivities(res.data.data));
-  });
+    getData("categories").then((res) => setCategories(res.data.data));
+  }, []);
   return (
     <div className={` ${styles.activities} container-fluid`}>
-      <h3 className="p-3">Explore All Activities</h3>
+      <div className="d-flex justify-content-between align-items-center p-3">
+        <div>
+          <h3>Explore All Activities</h3>
+        </div>
+        <div className="row">
+          <div className="col-6 d-flex align-items-center justify-content-end ">
+            <p className="m-0">Filter By Category</p>
+          </div>
+          <div className="col-6">
+            <select class="form-select" aria-label="Default select example">
+              <option selected value={null}>
+                Select
+              </option>
+              {categories.map((category) => {
+                return (
+                  <option value={category.id} key={category.id}>
+                    {category.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+        <div className="d-flex gap-3">
+          <button className="btn btn-success">Filter</button>
+          <button className="btn btn-secondary">Reset</button>
+        </div>
+      </div>
       <div className="row mx-3 ">
         {activities.map((activity, index) => {
           if (index < 6) {
