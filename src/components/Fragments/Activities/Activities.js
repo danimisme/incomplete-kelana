@@ -6,7 +6,6 @@ import styles from "./Activities.module.css";
 export default function Activities() {
   const [activities, setActivities] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [message, setMessage] = useState("");
   const { getData } = useGetData();
   useEffect(() => {
     getData("activities").then((res) => setActivities(res.data.data));
@@ -62,6 +61,11 @@ export default function Activities() {
         </div>
       </div>
       <div className="row mx-3 ">
+        {activities.length === 0 && (
+          <div class="alert alert-info w-50 mx-auto text-center" role="alert">
+            No activities found
+          </div>
+        )}
         {activities.map((activity, index) => {
           if (index < 6) {
             return (
