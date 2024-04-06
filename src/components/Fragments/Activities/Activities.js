@@ -6,6 +6,7 @@ import styles from "./Activities.module.css";
 export default function Activities() {
   const [activities, setActivities] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [message, setMessage] = useState("");
   const { getData } = useGetData();
   useEffect(() => {
     getData("activities").then((res) => setActivities(res.data.data));
@@ -16,6 +17,14 @@ export default function Activities() {
     const select = document.getElementById("select_categories");
     select.value = "Select";
     getData("activities").then((res) => setActivities(res.data.data));
+  };
+
+  const handleFilter = async () => {
+    const select = document.getElementById("select_categories");
+    const value = select.value;
+    getData(`activities-by-category/${value}`).then((res) =>
+      setActivities(res.data.data)
+    );
   };
 
   return (
@@ -29,7 +38,7 @@ export default function Activities() {
             <p className="m-0">Filter By Category</p>
           </div>
           <div className="col-6">
-            <select class="form-select" id="select_categories">
+            <select className="form-select" id="select_categories">
               <option selected value={null}>
                 Select
               </option>
@@ -44,7 +53,9 @@ export default function Activities() {
           </div>
         </div>
         <div className="d-flex gap-3">
-          <button className="btn btn-success">Filter</button>
+          <button className="btn btn-success" onClick={handleFilter}>
+            Filter
+          </button>
           <button className="btn btn-secondary" onClick={handleReset}>
             Reset
           </button>
@@ -92,7 +103,7 @@ export default function Activities() {
       </div>
       <div className="d-flex justify-content-center">
         <button className="btn btn-success">
-          See More <i class="bi bi-arrow-right"></i>
+          See More <i className="bi bi-arrow-right"></i>
         </button>
       </div>
     </div>
