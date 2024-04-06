@@ -14,11 +14,15 @@
     z-index: 1;
     cursor: pointer;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
     display: flex;
     align-items: center;    
     font-size: 20px;
+}
+
+.arrow_button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .arrow_button_left {
