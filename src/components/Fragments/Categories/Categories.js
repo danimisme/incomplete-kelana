@@ -35,6 +35,16 @@ export default function Categories() {
         mouseTracking
         infinite
         disableDotsControls
+        renderNextButton={() => (
+          <i
+            className={`bi bi-arrow-right-short fs-1 ${styles.arrow_button} ${styles.arrow_button_right}`}
+          ></i>
+        )}
+        renderPrevButton={() => (
+          <i
+            className={`bi bi-arrow-left-short fs-1 ${styles.arrow_button} ${styles.arrow_button_left}`}
+          ></i>
+        )}
         responsive={responsive}
       >
         {Categories.map((category) => (
