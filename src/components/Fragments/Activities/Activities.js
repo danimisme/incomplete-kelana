@@ -2,6 +2,12 @@
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 import styles from "./Activities.module.css";
+import { Montserrat } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export default function Activities() {
   const [activities, setActivities] = useState([]);
@@ -27,16 +33,18 @@ export default function Activities() {
   };
 
   return (
-    <div className={` ${styles.activities} container-fluid`}>
+    <div
+      className={` ${styles.activities} ${montserrat.className} container-fluid`}
+    >
       <div className="d-flex justify-content-between align-items-center p-3">
         <div>
-          <h3>Explore All Activities</h3>
+          <h3 className="m-0 fw-bold">Explore All Activities</h3>
         </div>
         <div className="row">
-          <div className="col-6 d-flex align-items-center justify-content-end ">
+          <div className="col-7 d-flex align-items-center justify-content-end ">
             <p className="m-0">Filter By Category</p>
           </div>
-          <div className="col-6">
+          <div className="col-5">
             <select className="form-select" id="select_categories">
               <option selected value={null}>
                 Select
