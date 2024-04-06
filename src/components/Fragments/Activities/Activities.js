@@ -38,7 +38,9 @@ export default function Activities() {
     >
       <div className="d-flex justify-content-between align-items-center p-3">
         <div>
-          <h3 className="m-0 fw-bold">Explore All Activities</h3>
+          <h3 className="m-0 fw-bold">
+            <i class="bi bi-airplane-fill"></i> Explore All Activities
+          </h3>
         </div>
         <div className="row">
           <div className="col-7 d-flex align-items-center justify-content-end ">
