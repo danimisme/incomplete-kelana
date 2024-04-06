@@ -18,13 +18,13 @@ export default function Promo() {
 
   const responsive = {
     375: {
-      items: 1,
-    },
-    568: {
       items: 2,
     },
+    568: {
+      items: 3,
+    },
     800: {
-      items: 4,
+      items: 5,
       itemsFit: "contain",
     },
   };
@@ -36,13 +36,13 @@ export default function Promo() {
     <div
       className={`${styles.promo_container} ${montserrat.className} container-fluid`}
     >
-      <h2 className="p-3 fw-bold">Promo Spesial Untuk Kamu !</h2>
+      <h3 className="p-3 fw-bold">
+        <i className="bi bi-ticket-perforated-fill me-2 fs-2 text-success"></i>
+        Special Promo For You !
+      </h3>
       <AliceCarousel
         mouseTracking
-        // autoPlay
-        // autoPlayInterval={2000}
         infinite
-        // disableButtonsControls
         renderNextButton={() => (
           <i
             className={`bi bi-arrow-right-short fs-1 ${styles.arrow_button} ${styles.arrow_button_right}`}
@@ -59,24 +59,26 @@ export default function Promo() {
         {promos.map((promo) => (
           <div
             key={promo.id}
-            className="card bg-transparent mx-3"
+            className={`card m-2 ${styles.promo_card}`}
             onDragStart={handleDragStart}
           >
             <img
               src={promo.imageUrl}
-              className=" card-img-top image-fluid"
+              className={` card-img-top ${styles.promo_image}`}
               alt="..."
             />
-            <div className="card-body d-flex flex-column justify-content-between">
-              <h5 className="card-title">{promo.title}</h5>
-              <p className="card-text">{promo.description}</p>
+            <div
+              className={`position-absolute bottom-0 bg-dark bg-opacity-50 w-100 text-white p-2 d-flex flex-column justify-content-between ${styles.promo_text}`}
+            >
+              <h5 className="card-title fs-6 fw-semibold ">{promo.title}</h5>
+              <p className="card-text fs-6 ">{promo.description}</p>
             </div>
           </div>
         ))}
       </AliceCarousel>
       <div className="d-flex justify-content-center">
-        <button className="btn btn-primary">
-          Lihat Semua <i className="bi bi-arrow-right"></i>
+        <button className="btn btn-success">
+          See All Promo <i className="bi bi-arrow-right"></i>
         </button>
       </div>
     </div>

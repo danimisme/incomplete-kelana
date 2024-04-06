@@ -28,3 +28,22 @@
 .arrow_button_right {
     right: 0;
 }
+
+.promo_card:hover {
+    opacity: 1;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.promo_card {
+    overflow: hidden;
+}
+
+.promo_text {
+    transform: translateY(50%);
+    transition: all 0.5s ease;
+}
+
+.promo_text:hover{
+    transform: translateY(0);
+}
