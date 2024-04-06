@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useGetData from "@/services/useGetData";
 import moment from "moment";
 import styles from "./DetailPromoPage.module.css";
+import Link from "next/link";
 
 export default function DetailPromoPage({ params }) {
   const { getData } = useGetData();
@@ -58,6 +59,11 @@ export default function DetailPromoPage({ params }) {
             <span className="fw-bold">Last Update : </span>
             {moment(promo.updatedAt).format("DD MMMM YYYY HH:mm:ss")}
           </p>
+          <div className="d-flex justify-content-end">
+            <Link href={"/promo"}>
+              <button className="btn btn-secondary">Back</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
