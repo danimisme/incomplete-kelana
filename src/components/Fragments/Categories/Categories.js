@@ -2,7 +2,7 @@
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 
-export default function Category() {
+export default function Categories() {
   const [Categories, setCategories] = useState([]);
   const { getData } = useGetData();
 
