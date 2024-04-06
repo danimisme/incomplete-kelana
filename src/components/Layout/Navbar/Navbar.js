@@ -71,7 +71,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item ms-lg-3">
-              <Link href="/" className="nav-link">
+              <Link href="/promo" className="nav-link">
                 Promo
               </Link>
             </li>
