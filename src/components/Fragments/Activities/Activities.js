@@ -14,12 +14,9 @@ export default function Activities() {
       <h3 className="p-3">Explore All Activities</h3>
       <div className="row mx-3 ">
         {activities.map((activity, index) => {
-          if (index < 8) {
+          if (index < 6) {
             return (
-              <div
-                key={activity.id}
-                className=" col-md-4 col-lg-3 col-sm-6 p-3 "
-              >
+              <div key={activity.id} className=" col-md-6 col-lg-4  p-3 ">
                 <div className="card">
                   <img
                     src={activity.imageUrls}
@@ -30,12 +27,14 @@ export default function Activities() {
                     <i className="bi bi-star-fill text-warning"></i>{" "}
                     {activity.rating}
                   </p>
-                  <div className="card-body">
+                  <div className="card-body d-flex justify-content-between align-items-center">
                     <div>
-                      <h6 className="card-title">{activity.title}</h6>
-                      <p className="text-muted fs-6">
+                      <h6 className={` ${styles.title} card-title`}>
+                        {activity.title}
+                      </h6>
+                      <p className={` ${styles.text_location}`}>
                         <i className="bi bi-geo-alt-fill text-success"></i>
-                        {` ${activity.city}, ${activity.province}`}{" "}
+                        {` ${activity.city}, ${activity.province}`}
                       </p>
                     </div>
                     <div>
