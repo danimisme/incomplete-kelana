@@ -1,8 +1,14 @@
+import styles from "./CardPromo.module.css";
+
 export default function CardPromo({ promo }) {
   return (
     <div className="col-md-3 col-sm-6 p-3">
-      <div className="card ">
-        <img src={promo.imageUrl} className="card-img-top" alt="..." />
+      <div className={`${styles.card} card`}>
+        <img
+          src={promo.imageUrl}
+          className={`${styles.card_promo} card-img-top`}
+          alt="..."
+        />
         <div className="card-body">
           <h5 className="card-title">{promo.title}</h5>
           <p className="card-text">{promo.description}</p>
