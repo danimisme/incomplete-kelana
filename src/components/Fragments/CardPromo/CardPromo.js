@@ -1,4 +1,5 @@
 import styles from "./CardPromo.module.css";
+import Link from "next/link";
 
 export default function CardPromo({ promo }) {
   return (
@@ -12,9 +13,9 @@ export default function CardPromo({ promo }) {
         <div className="card-body">
           <h5 className="card-title">{promo.title}</h5>
           <p className="card-text">{promo.description}</p>
-          <a href="#" className="btn btn-outline-success">
-            View Detail<i className="bi bi-arrow-right ms-2"></i>
-          </a>
+          <Link href={`/promo/${promo.id}`}>
+            <button className="btn btn-outline-success">See Details</button>
+          </Link>
         </div>
       </div>
     </div>
