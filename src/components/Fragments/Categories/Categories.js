@@ -1,4 +1,5 @@
 "use client";
+import styles from "./Categories.module.css";
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 import React from "react";
@@ -26,7 +27,7 @@ export default function Categories() {
   }, []);
 
   return (
-    <div>
+    <div className={`${styles.categories} mt-3 ps-3`}>
       <h2>
         <i className="bi bi-geo-alt-fill"></i> Temukan Yang Kamu Sukai
       </h2>
@@ -44,7 +45,7 @@ export default function Categories() {
             <img
               src={category.imageUrl}
               alt={category.name}
-              className="img-fluid w-100 h-100"
+              className={styles.img}
             />
           </div>
         ))}
