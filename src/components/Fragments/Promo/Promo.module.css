@@ -4,7 +4,6 @@
 }
 
 .promo_container img {
-    border-radius: 10px;
     filter: brightness(60%);
     aspect-ratio: 4/3; 
     object-fit: cover;
