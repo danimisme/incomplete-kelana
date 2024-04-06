@@ -1,4 +1,4 @@
-import { Merriweather } from "next/font/google";
+import { Merriweather, Gothic_A1 } from "next/font/google";
 import styles from "./page.module.css";
 import Banner from "@/components/Fragments/Banner/Banner";
 import Promo from "@/components/Fragments/Promo/Promo";
@@ -11,6 +11,10 @@ const merriweather = Merriweather({
   weight: ["300", "400", "700"],
 });
 
+const gothic = Gothic_A1({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 export default function Home() {
   return (
     <main>
@@ -18,9 +22,9 @@ export default function Home() {
         className={` ${styles.jumbotron} d-flex align-items-center justify-content-center text-white`}
       >
         <h1
-          className={`${merriweather.className} ${styles.text_shadow} text-center`}
+          className={`${gothic.className} ${styles.text_shadow} text-center fs-1`}
         >
-          Berkelana Menjelajahi <br /> Semesta Yang Indah
+          Adventure to Explore <br /> Through the Beautiful World
         </h1>
       </div>
       <Banner />
