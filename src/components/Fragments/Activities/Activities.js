@@ -11,6 +11,13 @@ export default function Activities() {
     getData("activities").then((res) => setActivities(res.data.data));
     getData("categories").then((res) => setCategories(res.data.data));
   }, []);
+
+  const handleReset = () => {
+    const select = document.getElementById("select_categories");
+    select.value = "Select";
+    getData("activities").then((res) => setActivities(res.data.data));
+  };
+
   return (
     <div className={` ${styles.activities} container-fluid`}>
       <div className="d-flex justify-content-between align-items-center p-3">
@@ -22,7 +29,7 @@ export default function Activities() {
             <p className="m-0">Filter By Category</p>
           </div>
           <div className="col-6">
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="select_categories">
               <option selected value={null}>
                 Select
               </option>
@@ -38,7 +45,9 @@ export default function Activities() {
         </div>
         <div className="d-flex gap-3">
           <button className="btn btn-success">Filter</button>
-          <button className="btn btn-secondary">Reset</button>
+          <button className="btn btn-secondary" onClick={handleReset}>
+            Reset
+          </button>
         </div>
       </div>
       <div className="row mx-3 ">
