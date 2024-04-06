@@ -1,10 +1,16 @@
 "use client";
+import { Montserrat } from "next/font/google";
 import styles from "./Categories.module.css";
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 import React from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export default function Categories() {
   const [Categories, setCategories] = useState([]);
@@ -28,10 +34,12 @@ export default function Categories() {
   }, []);
 
   return (
-    <div className={`${styles.categories} mt-3 container-fluid `}>
-      <h2 className="p-3">
-        <i className="bi bi-geo-alt-fill"></i> Temukan Yang Kamu Sukai
-      </h2>
+    <div
+      className={`${styles.categories} ${montserrat.className} mt-3 container-fluid `}
+    >
+      <h3 className="p-3 fw-bold">
+        <i className="bi bi-geo-alt-fill"></i> Find What You Love
+      </h3>
       <AliceCarousel
         mouseTracking
         infinite
