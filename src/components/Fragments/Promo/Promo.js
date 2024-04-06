@@ -6,6 +6,7 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useEffect, useState } from "react";
 import useGetData from "@/services/useGetData";
+import Link from "next/link";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -69,24 +70,28 @@ export default function Promo() {
             className={`card m-2 ${styles.promo_card}`}
             onDragStart={handleDragStart}
           >
-            <img
-              src={promo.imageUrl}
-              className={` card-img-top ${styles.promo_image}`}
-              alt="..."
-            />
-            <div
-              className={`position-absolute bottom-0 bg-dark bg-opacity-50 w-100 text-white p-2 d-flex flex-column justify-content-between ${styles.promo_text}`}
-            >
-              <h5 className="card-title fs-6 fw-semibold ">{promo.title}</h5>
-              <p className="card-text fs-6 ">{promo.description}</p>
-            </div>
+            <Link href={`/promo/${promo.id}`}>
+              <img
+                src={promo.imageUrl}
+                className={` card-img-top ${styles.promo_image}`}
+                alt="..."
+              />
+              <div
+                className={`position-absolute bottom-0 bg-dark bg-opacity-50 w-100 text-white p-2 d-flex flex-column justify-content-between ${styles.promo_text}`}
+              >
+                <h5 className="card-title fs-6 fw-semibold ">{promo.title}</h5>
+                <p className="card-text fs-6 ">{promo.description}</p>
+              </div>
+            </Link>
           </div>
         ))}
       </AliceCarousel>
       <div className="d-flex justify-content-center">
-        <button className="btn btn-success">
-          See All Promo <i className="bi bi-arrow-right"></i>
-        </button>
+        <Link href="/promo">
+          <button className="btn btn-success">
+            See All Promo <i className="bi bi-arrow-right"></i>
+          </button>
+        </Link>
       </div>
     </div>
   );
