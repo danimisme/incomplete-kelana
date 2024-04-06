@@ -1,6 +1,7 @@
 "use client";
 import useAuth from "@/services/useAuth";
 import Link from "next/link";
+import styles from "./Navbar.module.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -8,9 +9,11 @@ export default function Navbar() {
   const { userLog } = useAuth();
   const [user, setUser] = useState({});
   const router = useRouter();
+  const [navStyle, setNavStyle] = useState("");
 
   useEffect(() => {
     getUserLogged();
+    window.addEventListener("scroll", handleScroll);
   }, []);
 
   const getUserLogged = () => {
@@ -27,14 +30,24 @@ export default function Navbar() {
     router.push("/login");
   };
 
+  const handleScroll = () => {
+    if (window.scrollY >= 100 && window.scrollY < 500) {
+      setNavStyle(styles.hide);
+    } else if (window.scrollY >= 500) {
+      setNavStyle(styles.scrolled);
+    } else {
+      setNavStyle(styles.show);
+    }
+  };
+
   return (
-    <nav className="navbar fixed-top navbar-expand-lg bg-transparent">
+    <nav className={`navbar fixed-top navbar-expand-lg  ${navStyle}`}>
       <div className="container-lg justify-content-between align-items-center">
         <div className="navbar-brand">
           <h2 className="m-0">Kelana</h2>
         </div>
 
-        <div className="align-items-end text-end border ">
+        <div className="align-items-end text-end ">
           <button
             className="navbar-toggler"
             type="button"
@@ -64,7 +77,7 @@ export default function Navbar() {
             </li>
 
             <li className="nav-item ms-lg-3">
-              <Link href="/" className="nav-link disabled" aria-disabled="true">
+              <Link href="/" className="nav-link" aria-disabled="true">
                 Category
               </Link>
             </li>
@@ -104,8 +117,8 @@ export default function Navbar() {
               </ul>
             </div>
           ) : (
-            <Link href="/login" className="btn btn-outline-primary btn-sm ">
-              Login
+            <Link href="/login" className="btn btn-outline-dark btn-sm ">
+              <i className="bi bi-person-fill"></i> Login
             </Link>
           )}
         </div>

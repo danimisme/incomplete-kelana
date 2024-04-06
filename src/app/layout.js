@@ -3,7 +3,7 @@ import "./globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import BootstrapClient from "@/components/BootstrapClient";
 import { Inter } from "next/font/google";
-import Navbar from "@/components/Layout/Navbar";
+import Navbar from "@/components/Layout/Navbar/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
