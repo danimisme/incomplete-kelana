@@ -9,6 +9,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 export default function Categories() {
   const [Categories, setCategories] = useState([]);
   const { getData } = useGetData();
+  const handleDragStart = (e) => e.preventDefault();
 
   const responsive = {
     375: {
@@ -48,7 +49,7 @@ export default function Categories() {
         responsive={responsive}
       >
         {Categories.map((category) => (
-          <div key={category.id} className="mx-3">
+          <div key={category.id} className="mx-3" onDragStart={handleDragStart}>
             <p className="position-absolute p-3 fw-bold text-white bg-dark rounded bg-opacity-75">
               {category.name}
             </p>
