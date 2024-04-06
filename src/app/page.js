@@ -4,6 +4,7 @@ import Banner from "@/components/Fragments/Banner/Banner";
 import Promo from "@/components/Fragments/Promo/Promo";
 import Category from "@/components/Fragments/Categories/Categories";
 import Categories from "@/components/Fragments/Categories/Categories";
+import Activities from "@/components/Fragments/Activities/Activities";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function Home() {
       <Banner />
       <Promo />
       <Categories />
+      <Activities />
     </main>
   );
 }
