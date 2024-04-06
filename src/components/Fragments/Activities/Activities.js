@@ -38,12 +38,23 @@ export default function Activities() {
                         {` ${activity.city}, ${activity.province}`}{" "}
                       </p>
                     </div>
+                    <div>
+                      <p>
+                        {activity.price.toLocaleString("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                        })}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             );
           }
         })}
+      </div>
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-success">See More</button>
       </div>
     </div>
   );
