@@ -1,5 +1,5 @@
 "use client";
-import { Quicksand } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import styles from "./Promo.module.css";
 import React from "react";
 import AliceCarousel from "react-alice-carousel";
@@ -7,7 +7,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { useEffect, useState } from "react";
 import useGetData from "@/services/useGetData";
 
-const quicksand = Quicksand({
+const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -34,7 +34,7 @@ export default function Promo() {
   }, []);
   return (
     <div
-      className={`${styles.promo_container} ${quicksand.className} container-fluid`}
+      className={`${styles.promo_container} ${montserrat.className} container-fluid`}
     >
       <h2 className="p-3 fw-bold">Promo Spesial Untuk Kamu !</h2>
       <AliceCarousel
