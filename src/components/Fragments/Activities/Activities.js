@@ -36,12 +36,12 @@ export default function Activities() {
     <div
       className={` ${styles.activities} ${montserrat.className} container-fluid`}
     >
-      <div className="d-flex justify-content-between align-items-center p-3">
+      <div className={`${styles.header}`}>
         <div className="d-flex justify-content-start align-items-baseline">
           <div>
             <i className="bi bi-airplane-fill fs-2 me-2 text-success"></i>
           </div>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column ">
             <h3 className="m-0 fw-bold">Explore All Activities</h3>
             <p className="m-0">
               &quot;Discover a Plethora of Activities to Explore&quot;
@@ -54,9 +54,7 @@ export default function Activities() {
           </div>
           <div className="col-5">
             <select className="form-select" id="select_categories">
-              <option selected value={null}>
-                Select
-              </option>
+              <option value="Select">Select</option>
               {categories.map((category) => {
                 return (
                   <option value={category.id} key={category.id}>
@@ -78,7 +76,10 @@ export default function Activities() {
       </div>
       <div className="row mx-3 ">
         {activities.length === 0 && (
-          <div class="alert alert-info w-50 mx-auto text-center" role="alert">
+          <div
+            className="alert alert-info w-50 mx-auto text-center"
+            role="alert"
+          >
             No activities found
           </div>
         )}
