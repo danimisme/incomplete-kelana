@@ -70,9 +70,6 @@ export default function Promo() {
             <div className="card-body d-flex flex-column justify-content-between">
               <h5 className="card-title">{promo.title}</h5>
               <p className="card-text">{promo.description}</p>
-              <a href="#" className="btn btn-outline-primary">
-                Detail
-              </a>
             </div>
           </div>
         ))}
