@@ -2,6 +2,7 @@ import { Merriweather } from "next/font/google";
 import styles from "./page.module.css";
 import Banner from "@/components/Fragments/Banner/Banner";
 import Promo from "@/components/Fragments/Promo/Promo";
+import Category from "@/components/Fragments/Category/Category";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function Home() {
       </div>
       <Banner />
       <Promo />
+      <Category />
     </main>
   );
 }

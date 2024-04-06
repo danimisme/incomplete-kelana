@@ -77,6 +77,11 @@ export default function Promo() {
           </div>
         ))}
       </AliceCarousel>
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-primary">
+          Lihat Semua <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
     </div>
   );
 }
