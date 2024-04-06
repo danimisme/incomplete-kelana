@@ -53,7 +53,9 @@ export default function Activities() {
         })}
       </div>
       <div className="d-flex justify-content-center">
-        <button className="btn btn-success">See More</button>
+        <button className="btn btn-success">
+          See More <i class="bi bi-arrow-right"></i>
+        </button>
       </div>
     </div>
   );
