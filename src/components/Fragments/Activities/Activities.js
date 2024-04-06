@@ -15,15 +15,22 @@ export default function Activities() {
         {activities.map((activity, index) => {
           if (index < 8) {
             return (
-              <div key={activity.id} className=" col-md-4 col-lg-3 p-3 ">
+              <div
+                key={activity.id}
+                className=" col-md-4 col-lg-3 col-sm-6 p-3 "
+              >
                 <div className="card">
                   <img
                     src={activity.imageUrls}
                     className="card-img-top"
                     alt="..."
                   />
+                  <p className="position-absolute top-0 end-0 bg-white m-1 px-2 py-1 rounded-pill ">
+                    <i className="bi bi-star-fill text-warning"></i>{" "}
+                    {activity.rating}
+                  </p>
                   <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
+                    <h5 className="card-title">{activity.title}</h5>
                     <p className="card-text">
                       Some quick example text to build on the card title and
                       make up the bulk of the card's content.
