@@ -37,9 +37,15 @@ export default function Categories() {
     <div
       className={`${styles.categories} ${montserrat.className} mt-3 container-fluid `}
     >
-      <h3 className="p-3 fw-bold">
-        <i className="bi bi-geo-alt-fill"></i> Find What You Love
-      </h3>
+      <div className="d-flex justify-content-start align-items-baseline p-3">
+        <div>
+          <i className="bi bi-geo-alt-fill fs-2 me-2 text-success"></i>
+        </div>
+        <div>
+          <h3 className="m-0 fw-bold">Find What You Love</h3>
+          <p className="m-0">&quot;Let&apos;s Discover Your Passion&quot;</p>
+        </div>
+      </div>
       <AliceCarousel
         mouseTracking
         infinite
