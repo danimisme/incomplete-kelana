@@ -37,10 +37,16 @@ export default function Activities() {
       className={` ${styles.activities} ${montserrat.className} container-fluid`}
     >
       <div className="d-flex justify-content-between align-items-center p-3">
-        <div>
-          <h3 className="m-0 fw-bold">
-            <i class="bi bi-airplane-fill"></i> Explore All Activities
-          </h3>
+        <div className="d-flex justify-content-start align-items-baseline">
+          <div>
+            <i className="bi bi-airplane-fill fs-2 me-2 text-success"></i>
+          </div>
+          <div className="d-flex flex-column">
+            <h3 className="m-0 fw-bold">Explore All Activities</h3>
+            <p className="m-0">
+              &quot;Discover a Plethora of Activities to Explore&quot;
+            </p>
+          </div>
         </div>
         <div className="row">
           <div className="col-7 d-flex align-items-center justify-content-end ">
