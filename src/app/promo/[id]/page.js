@@ -14,11 +14,11 @@ export default function DetailPromoPage({ params }) {
   return (
     <div className="mt-5 container-lg">
       <div className="py-5 row">
-        <h1>Detail Promo Page</h1>
-        <div className="col-lg-6">
+        <h1 className="mb-3 text-lg-start text-center">Detail Promo</h1>
+        <div className="col-lg-6 col-10 mx-auto">
           <img src={promo.imageUrl} alt={promo.title} className="img-fluid" />
         </div>
-        <div className="col-lg-6">
+        <div className="col-lg-6 col-10 mx-auto mt-3">
           <h3>{promo.title}</h3>
           <p className="m-3 border-bottom ">
             <span className="fw-bold">Description : </span>
