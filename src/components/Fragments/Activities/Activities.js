@@ -10,7 +10,7 @@ export default function Activities() {
     getData("activities").then((res) => setActivities(res.data.data));
   });
   return (
-    <div className="container-fluid">
+    <div className={` ${styles.activities} container-fluid`}>
       <h3 className="p-3">Explore All Activities</h3>
       <div className="row mx-3 ">
         {activities.map((activity, index) => {
@@ -23,7 +23,7 @@ export default function Activities() {
                 <div className="card">
                   <img
                     src={activity.imageUrls}
-                    className="card-img-top"
+                    className={` ${styles.img} card-img-top`}
                     alt="..."
                   />
                   <p className="position-absolute top-0 end-0 bg-white m-1 px-2 py-1 rounded-pill ">
