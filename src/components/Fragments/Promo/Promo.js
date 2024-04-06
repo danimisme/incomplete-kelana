@@ -36,10 +36,17 @@ export default function Promo() {
     <div
       className={`${styles.promo_container} ${montserrat.className} container-fluid`}
     >
-      <h3 className="p-3 fw-bold">
-        <i className="bi bi-ticket-perforated-fill me-2 fs-2 text-success"></i>
-        Special Promo For You !
-      </h3>
+      <div className="d-flex justify-content-start align-items-baseline px-3">
+        <div>
+          <i className="bi bi-ticket-perforated-fill me-2 fs-2 text-success"></i>
+        </div>
+        <div className="d-flex flex-column">
+          <h3 className=" fw-bold m-0">Special Promo For You !</h3>
+          <p className="m-0 text-muted">
+            &quot;Exclusive Offer Just for You! Don&apos;t Miss Out!&quot;
+          </p>
+        </div>
+      </div>
       <AliceCarousel
         mouseTracking
         infinite
