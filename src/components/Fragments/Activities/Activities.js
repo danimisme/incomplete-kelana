@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./Activities.module.css";
 import { Montserrat } from "next/font/google";
 import CardActivity from "../CardActivity/CardActivity";
+import Link from "next/link";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -91,9 +92,11 @@ export default function Activities() {
         })}
       </div>
       <div className="d-flex justify-content-center">
-        <button className="btn btn-success">
-          See More <i className="bi bi-arrow-right"></i>
-        </button>
+        <Link href="/activities">
+          <button className="btn btn-success">
+            See More <i className="bi bi-arrow-right"></i>
+          </button>
+        </Link>
       </div>
     </div>
   );
