@@ -1,0 +1,23 @@
+.img {
+    width: 100%;
+    aspect-ratio: 5/3;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.text_location {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+
+}

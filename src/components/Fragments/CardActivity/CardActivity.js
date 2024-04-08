@@ -1,3 +1,5 @@
+import styles from "./CardActivity.module.css";
+
 export default function CardActivity({ activity }) {
   return (
     <div className=" col-md-6 col-lg-4  p-3 ">
