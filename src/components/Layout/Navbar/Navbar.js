@@ -43,6 +43,11 @@ export default function Navbar() {
   return (
     <nav className={`navbar fixed-top navbar-expand-lg  ${navStyle}`}>
       <div className="container-lg justify-content-between align-items-center">
+        {user && user.role === "admin" && (
+          <div className={`${styles.setting_btn} mx-3`}>
+            <i className="bi bi-sliders fs-3 "></i>
+          </div>
+        )}
         <div className="navbar-brand">
           <h2 className="m-0">Kelana</h2>
         </div>
