@@ -19,8 +19,12 @@ export default function UserPage() {
                 <th scope="col">#</th>
                 <th scope="col">Picture</th>
                 <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone Number</th>
+                <th scope="col" className="d-none d-md-table-cell">
+                  Email
+                </th>
+                <th scope="col" className="d-none d-md-table-cell">
+                  Phone Number
+                </th>
                 <th scope="col" colSpan={2} className="text-center">
                   Action
                 </th>
@@ -39,13 +43,12 @@ export default function UserPage() {
                     />
                   </td>
                   <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.phoneNumber}</td>
+                  <td className="d-none d-md-table-cell">{user.email}</td>
+                  <td className="d-none d-md-table-cell">{user.phoneNumber}</td>
                   <td>
                     <button className="btn btn-success text-sm">Edit</button>
                   </td>
                   <td>
-                    {" "}
                     <button className="btn btn-dark">Change role</button>
                   </td>
                 </tr>
