@@ -6,6 +6,7 @@ import {
   hideSidebar,
   toggleSidebar,
 } from "@/redux/slices/SidebarSlice";
+import Link from "next/link";
 export default function Sidebar() {
   const sidebarShow = useSelector((state) => state.sidebar.sidebarShow);
   const dispacth = useDispatch();
@@ -24,8 +25,15 @@ export default function Sidebar() {
       </div>
       <h2>Dashboard</h2>
       <ul className="list-group list-group-flush mt-5">
-        <li className="list-group-item">User</li>
-        <li className="list-group-item">Banner</li>
+        <Link href="/dashboard/user" className="text-decoration-none text-dark">
+          <li className="list-group-item">User</li>
+        </Link>
+        <Link
+          href="/dashboard/banner"
+          className="text-decoration-none text-dark"
+        >
+          <li className="list-group-item">Banner</li>
+        </Link>
         <li className="list-group-item">Promo</li>
         <li className="list-group-item">Categoty</li>
         <li className="list-group-item">Activity</li>
