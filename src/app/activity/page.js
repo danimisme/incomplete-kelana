@@ -89,7 +89,9 @@ export default function ActivityPage() {
       <div className=" container-lg">
         <div className="row">
           {activities.map((activity) => (
-            <CardActivity activity={activity} key={activity.id} />
+            <div className="col-md-6 col-lg-4 p-3" key={activity.id}>
+              <CardActivity activity={activity} />
+            </div>
           ))}
         </div>
       </div>
