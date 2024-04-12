@@ -31,6 +31,13 @@ export default function EditUserForm({ user }) {
     }
   };
 
+  const handleCloseForm = () => {
+    dispatch(toggleFormUser());
+    setProfilePictureUrl(null);
+    setFile(null);
+    user = null;
+  };
+
   return (
     <div
       className={` ${styles.form_container} ${
@@ -41,7 +48,7 @@ export default function EditUserForm({ user }) {
         <h2>Edit User</h2>
         <i
           className={`${styles.close_btn} bi bi-x-circle fs-3`}
-          onClick={() => dispatch(toggleFormUser())}
+          onClick={() => handleCloseForm()}
         ></i>
         <div className="mb-3 d-flex align-items-center gap-3">
           <img
