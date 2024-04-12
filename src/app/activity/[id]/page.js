@@ -10,9 +10,11 @@ export default function DetailActivityPage({ params }) {
   }, []);
   console.log(activity);
   return (
-    <div className="mt-5 container-lg">
-      <h1>Detail Activity Page</h1>
-      <p>Activity ID: {params.id}</p>
-    </div>
+    <>
+      <div className="mt-5 container-lg">
+        <h1>Detail Activity Page</h1>
+        <p>Activity ID: {params.id}</p>
+      </div>
+    </>
   );
 }
