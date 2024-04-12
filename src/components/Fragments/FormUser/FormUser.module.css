@@ -13,8 +13,19 @@
 }
 
 .form {
+    position: relative;
     background-color: white;
     width: 450px;
     padding: 20px;
     border-radius: 10px;
+}
+
+.close_btn {
+    position: absolute;
+    margin: 0;
+    padding: 10px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: red;
 }

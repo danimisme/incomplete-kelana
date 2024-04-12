@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import useAuth from "@/services/useAuth";
+import EditUserForm from "@/components/Fragments/FormUser/FormUser";
 export default function UserPage() {
   const { userLog } = useAuth();
   const [users, setUsers] = useState([]);
+  const [user, setUser] = useState({});
   useEffect(() => {
     userLog("all-user", setUsers);
   }, []);
@@ -13,6 +15,7 @@ export default function UserPage() {
       <div className="row py-3">
         <div className="col-lg-10 col-10 mx-auto">
           <h1>User Page</h1>
+          <EditUserForm user={user} />
           <table class="table">
             <thead>
               <tr>
