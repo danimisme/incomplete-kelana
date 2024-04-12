@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "./Navbar.module.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { showSidebar, hideSidebar } from "@/redux/slices/SidebarSlice";
+import { toggleSidebar } from "@/redux/slices/SidebarSlice";
 import { useDispatch } from "react-redux";
 
 export default function Navbar() {
@@ -49,7 +49,7 @@ export default function Navbar() {
         {user && user.role === "admin" && (
           <div
             className={`${styles.setting_btn} mx-3`}
-            onClick={() => dispatch(showSidebar())}
+            onClick={() => dispatch(toggleSidebar())}
           >
             <i className="bi bi-sliders fs-3 "></i>
           </div>
