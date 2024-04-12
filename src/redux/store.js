@@ -6,3 +6,5 @@ export const store = configureStore({
     sidebar: sidebarSlice,
   },
 });
+
+export default store;
