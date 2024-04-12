@@ -2,6 +2,7 @@
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 import styles from "./DetailActivityPage.module.css";
+import Link from "next/link";
 
 export default function DetailActivityPage({ params }) {
   const { getData } = useGetData();
@@ -20,7 +21,21 @@ export default function DetailActivityPage({ params }) {
 
   return (
     <>
-      <div className="container-lg mt-5 py-3"></div>
+      <div className="container-lg mt-5 py-3">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link href="/activity">Activity</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              {activity.title}
+            </li>
+          </ol>
+        </nav>
+      </div>
       <div className="container-lg">
         <h1 className="text-center">{activity.title}</h1>
         <div className="row">
