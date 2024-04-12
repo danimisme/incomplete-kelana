@@ -3,6 +3,12 @@ import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 import styles from "./DetailActivityPage.module.css";
 import Link from "next/link";
+import { Gabarito } from "next/font/google";
+
+const gabarito = Gabarito({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 export default function DetailActivityPage({ params }) {
   const { getData } = useGetData();
@@ -41,7 +47,9 @@ export default function DetailActivityPage({ params }) {
         </nav>
       </div>
       <div className="container-lg">
-        <h1 className="text-center">{activity.title}</h1>
+        <h1 className={`${gabarito.className} text-center`}>
+          {activity.title}
+        </h1>
         <div className="row">
           {activity?.imageUrls?.map((image) => (
             <div key={image} className=" col-lg-6 col-10 mx-auto py-3">
