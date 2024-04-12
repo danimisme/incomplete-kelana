@@ -88,6 +88,14 @@ export default function ActivityPage() {
 
       <div className=" container-lg">
         <div className="row">
+          {activities.length === 0 && (
+            <div
+              className="alert alert-info w-50 mx-auto text-center"
+              role="alert"
+            >
+              No activities found
+            </div>
+          )}
           {activities.map((activity) => (
             <div className="col-md-6 col-lg-4 p-3" key={activity.id}>
               <CardActivity activity={activity} />
