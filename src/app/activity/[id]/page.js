@@ -54,8 +54,14 @@ export default function DetailActivityPage({ params }) {
           ))}
         </div>
         <div className="container-lg row ">
-          <div className="col-lg-6 col-10 mx-auto mt-3">
-            <p>{activity.description}</p>
+          <div className="border border-2 border-success my-3"></div>
+          <h2>Information</h2>
+          <div className=" col-10 mt-3">
+            <p>
+              {" "}
+              <span className="fw-bold"> Description : </span>{" "}
+              {activity.description}
+            </p>
             <p>
               <span className="fw-bold"> Price : </span>
               {activity?.price?.toLocaleString("id-ID", {
@@ -80,25 +86,34 @@ export default function DetailActivityPage({ params }) {
               /5 (<i className="bi bi-person-fill"></i>
               {activity.total_reviews} Reviews)
             </p>
-            <p>
-              <span className="fw-bold"> Address : </span> {activity.address}
-            </p>
-            <p>
-              <span className="fw-bold"> City : </span> {activity.city}
-            </p>
-            <p>
-              <span className="fw-bold"> Province : </span> {activity.province}
-            </p>
           </div>
-          <div className="col-lg-6 col-10 mx-auto mt-3">
-            <div className={styles.map_container}>
-              <div
-                dangerouslySetInnerHTML={{ __html: mapHtml }}
-                id="map-container"
-              />
+          <div className="border border-2 border-success my-3"></div>
+          <div className="row container-lg mt-3">
+            <h2> Location</h2>
+            <div className="col-lg-6 col-10 mx-auto">
+              <p>
+                <span className="fw-bold"> Address : </span> {activity.address}
+              </p>
+              <p>
+                <span className="fw-bold"> City : </span> {activity.city}
+              </p>
+              <p>
+                <span className="fw-bold"> Province : </span>{" "}
+                {activity.province}
+              </p>
+            </div>
+            <div className="col-lg-6 col-10 mx-auto">
+              <div className={styles.map_container}>
+                <div
+                  dangerouslySetInnerHTML={{ __html: mapHtml }}
+                  id="map-container"
+                />
+              </div>
             </div>
           </div>
         </div>
+        <div className="border border-2 border-success my-3"></div>
+
         <div className="container-lg mt-3">
           <p>
             <span className="fw-bold"> Category : </span>{" "}
