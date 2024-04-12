@@ -14,24 +14,22 @@ export default function BannerPage() {
       <div className="row py-3">
         <div className="col-lg-10 col-10 mx-auto">
           <h1>
-            Banner Page{" "}
+            Banner Page
             <button className="btn btn-outline-success">Create Banner</button>
           </h1>
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Picture</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            {banners.map((banner) => (
+            {banners.map((banner, index) => (
               <tbody key={banner.id}>
                 <tr>
-                  <th scope="row">1</th>
-                  <td>{banner.id}</td>
+                  <th scope="row">{index + 1}</th>
                   <td>{banner.name}</td>
                   <td>
                     <img
