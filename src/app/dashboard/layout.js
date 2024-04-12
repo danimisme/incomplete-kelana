@@ -1,5 +1,4 @@
 import "bootstrap/dist/css/bootstrap.css";
-import "../globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import BootstrapClient from "@/components/BootstrapClient";
 import { Inter } from "next/font/google";
@@ -13,8 +12,8 @@ export default function DashboardLayout({ children }) {
       <html lang="en">
         <body className={inter.className}>
           <Sidebar />
-          {children}
           <BootstrapClient />
+          {children}
         </body>
       </html>
     </StoreProvider>
