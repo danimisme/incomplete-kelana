@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import useGetData from "@/services/useGetData";
+import styles from "./BannerPage.module.css";
 
 export default function BannerPage() {
   const { getData } = useGetData();
@@ -14,8 +15,10 @@ export default function BannerPage() {
       <div className="row py-3">
         <div className="col-lg-10 col-10 mx-auto">
           <h1>
-            Banner Page
-            <button className="btn btn-outline-success">Create Banner</button>
+            Banner Page{" "}
+            <button className="btn btn-outline-success">
+              <i className="bi bi-plus-circle"></i> Create Banner
+            </button>
           </h1>
           <table class="table">
             <thead>
@@ -23,7 +26,9 @@ export default function BannerPage() {
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Picture</th>
-                <th scope="col">Action</th>
+                <th scope="col" colSpan={3} className="text-center">
+                  Action
+                </th>
               </tr>
             </thead>
             {banners.map((banner, index) => (
@@ -35,11 +40,17 @@ export default function BannerPage() {
                     <img
                       src={banner.imageUrl}
                       alt={banner.name}
-                      className="img-fluid"
+                      className={` ${styles.image} `}
                     />
                   </td>
                   <td>
+                    <button className="btn btn-outline-info">View</button>
+                  </td>
+                  <td>
                     <button className="btn btn-outline-success">Edit</button>
+                  </td>
+                  <td>
+                    <button className="btn btn-outline-danger">Delete</button>
                   </td>
                 </tr>
               </tbody>
