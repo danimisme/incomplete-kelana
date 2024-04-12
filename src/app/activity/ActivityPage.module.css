@@ -22,5 +22,9 @@
     .jumbotron {
         max-height: 70vh;
     }
-    
+    .header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
 }
