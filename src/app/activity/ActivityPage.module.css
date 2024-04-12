@@ -6,6 +6,9 @@
     height: 600px;
 }
 
+.text_shadow {
+    text-shadow: 2px 2px 4px #000000;
+}
 
 @media screen and (max-width: 800px) {
     .jumbotron {

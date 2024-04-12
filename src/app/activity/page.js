@@ -12,7 +12,13 @@ export default function ActivityPage() {
   }, []);
   return (
     <>
-      <div className={`${styles.jumbotron} `}></div>
+      <div
+        className={`${styles.jumbotron} d-flex align-items-center justify-content-center text-white `}
+      >
+        <h1 className={`${styles.text_shadow} text-center fs-1`}>
+          Challenge, Adventure, Discovery. <br /> Explore the World with Us!
+        </h1>
+      </div>
       <div className="mt-5 container-lg">
         <div className="py-5">
           <h1>Activity Page</h1>
