@@ -110,13 +110,15 @@ export default function Navbar() {
                 <img
                   src={user.profilePictureUrl}
                   alt={user.name}
+                  width={35}
+                  height={35}
                   className="img-fluid rounded-circle me-2 profile_picture"
                 />
                 <p className="m-0">{user.name}</p>
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/" className="dropdown-item">
+                  <Link href="/profile" className="dropdown-item">
                     Profile
                   </Link>
                 </li>
