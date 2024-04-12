@@ -34,7 +34,7 @@ export default function useAuth() {
       if (url === "logout") {
         localStorage.removeItem("token");
         callback(res);
-      } else if (url === "user") {
+      } else {
         callback(res.data.data);
       }
     } catch (error) {
