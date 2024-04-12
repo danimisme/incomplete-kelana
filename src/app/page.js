@@ -14,7 +14,22 @@ const gothic = Gothic_A1({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
+
 export default function Home() {
+  const handleReset = () => {
+    const select = document.getElementById("select_categories");
+    select.value = "Select";
+    getData("activities").then((res) => setActivities(res.data.data));
+  };
+
+  const handleFilter = async () => {
+    const select = document.getElementById("select_categories");
+    const value = select.value;
+    getData(`activities-by-category/${value}`).then((res) =>
+      setActivities(res.data.data)
+    );
+  };
+
   return (
     <main>
       <div

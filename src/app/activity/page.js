@@ -13,9 +13,26 @@ const gabarito = Gabarito({
 export default function ActivityPage() {
   const { getData } = useGetData();
   const [activities, setActivities] = useState([]);
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     getData("activities").then((res) => setActivities(res.data.data));
+    getData("categories").then((res) => setCategories(res.data.data));
   }, []);
+
+  const handleReset = () => {
+    const select = document.getElementById("select_categories");
+    select.value = "Select";
+    getData("activities").then((res) => setActivities(res.data.data));
+  };
+
+  const handleFilter = async () => {
+    const select = document.getElementById("select_categories");
+    const value = select.value;
+    getData(`activities-by-category/${value}`).then((res) =>
+      setActivities(res.data.data)
+    );
+  };
+
   return (
     <>
       <div
@@ -27,14 +44,53 @@ export default function ActivityPage() {
           Challenge, Adventure, Discovery. <br /> Explore the World with Us!
         </h1>
       </div>
-      <div className="mt-5 container-lg">
-        <div className="py-5">
-          <h1>Activity Page</h1>
-          <div className="row">
-            {activities.map((activity) => (
-              <CardActivity activity={activity} key={activity.id} />
-            ))}
+
+      <div
+        className={`${styles.header} ${gabarito.className} container-lg mt-2`}
+      >
+        <div className="d-flex justify-content-start align-items-baseline">
+          <div>
+            <i className="bi bi-airplane-fill fs-2 me-2 text-success"></i>
           </div>
+          <div className="d-flex flex-column ">
+            <h3 className="m-0 fw-bold">Explore All Activities</h3>
+            <p className="m-0">
+              &quot;Discover a Plethora of Activities to Explore&quot;
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-7 d-flex align-items-center justify-content-end ">
+            <p className="m-0">Filter By Category</p>
+          </div>
+          <div className="col-5">
+            <select className="form-select" id="select_categories">
+              <option value="Select">Select</option>
+              {categories.map((category) => {
+                return (
+                  <option value={category.id} key={category.id}>
+                    {category.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+        <div className="d-flex gap-3">
+          <button className="btn btn-success" onClick={handleFilter}>
+            Filter
+          </button>
+          <button className="btn btn-secondary" onClick={handleReset}>
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <div className=" container-lg">
+        <div className="row">
+          {activities.map((activity) => (
+            <CardActivity activity={activity} key={activity.id} />
+          ))}
         </div>
       </div>
     </>
