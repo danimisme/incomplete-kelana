@@ -2,13 +2,21 @@
 import { useEffect, useState } from "react";
 import useAuth from "@/services/useAuth";
 import EditUserForm from "@/components/Fragments/FormUser/FormUser";
+import { useDispatch } from "react-redux";
+import { toggleFormUser } from "@/redux/slices/FormUserSlice";
 export default function UserPage() {
   const { userLog } = useAuth();
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({});
+  const dispatch = useDispatch();
   useEffect(() => {
     userLog("all-user", setUsers);
   }, []);
+
+  const handleEdit = (user) => {
+    setUser(user);
+    dispatch(toggleFormUser());
+  };
 
   return (
     <div className="mt-5 container-lg ">
@@ -49,7 +57,12 @@ export default function UserPage() {
                   <td className="d-none d-md-table-cell">{user.email}</td>
                   <td className="d-none d-md-table-cell">{user.phoneNumber}</td>
                   <td>
-                    <button className="btn btn-success text-sm">Edit</button>
+                    <button
+                      className="btn btn-success text-sm"
+                      onClick={() => handleEdit(user)}
+                    >
+                      Edit
+                    </button>
                   </td>
                   <td>
                     <button className="btn btn-dark">Change role</button>
