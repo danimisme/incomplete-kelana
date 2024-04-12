@@ -53,7 +53,7 @@ export default function DetailActivityPage({ params }) {
             </div>
           ))}
         </div>
-        <div className="container-lg row border border-1 border-dark">
+        <div className="container-lg row ">
           <div className="col-lg-6 col-10 mx-auto mt-3">
             <p>{activity.description}</p>
             <p>
@@ -97,6 +97,18 @@ export default function DetailActivityPage({ params }) {
                 id="map-container"
               />
             </div>
+          </div>
+        </div>
+        <div className="container-lg mt-3">
+          <p>
+            <span className="fw-bold"> Category : </span>{" "}
+            {activity?.category?.name}
+          </p>
+          <div className="col-lg-3 col-8">
+            <img
+              src={activity?.category?.imageUrl}
+              className="img-fluid rounded"
+            />
           </div>
         </div>
       </div>
