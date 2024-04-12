@@ -5,6 +5,7 @@ import BootstrapClient from "@/components/BootstrapClient";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Layout/Navbar/Navbar";
 import Sidebar from "@/components/Layout/Sidebar/Sidebar";
+import { StoreProvider } from "@/redux/StoreProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -14,13 +15,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        <Sidebar />
-        {children}
-        <BootstrapClient />
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Navbar />
+          <Sidebar />
+          {children}
+          <BootstrapClient />
+        </body>
+      </html>
+    </StoreProvider>
   );
 }
