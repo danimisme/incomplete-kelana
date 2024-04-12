@@ -1,9 +1,8 @@
-import { createStore, combineReducers } from "redux";
-import SidebarReducer from "./reducers/SidebarReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { sidebarSlice } from "./slices/SidebarSlice";
 
-const rootReducer = combineReducers({
-  sidebar: SidebarReducer,
+export const store = configureStore({
+  reducer: {
+    sidebar: sidebarSlice,
+  },
 });
-
-const store = createStore(rootReducer);
-export default store;
