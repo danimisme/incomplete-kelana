@@ -25,10 +25,14 @@ export default function DetailActivityPage({ params }) {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link href="/">Home</Link>
+              <Link href="/" className="text-success">
+                Home
+              </Link>
             </li>
             <li className="breadcrumb-item">
-              <Link href="/activity">Activity</Link>
+              <Link href="/activity " className="text-success">
+                Activity
+              </Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {activity.title}
