@@ -5,6 +5,9 @@ import styles from "./Activities.module.css";
 import { Montserrat } from "next/font/google";
 import CardActivity from "../CardActivity/CardActivity";
 import Link from "next/link";
+import React from "react";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -15,24 +18,24 @@ export default function Activities() {
   const [activities, setActivities] = useState([]);
   const [categories, setCategories] = useState([]);
   const { getData } = useGetData();
+  const handleDragStart = (e) => e.preventDefault();
+
+  const responsive = {
+    375: {
+      items: 1,
+    },
+    568: {
+      items: 2,
+    },
+    800: {
+      items: 3,
+      itemsFit: "contain",
+    },
+  };
   useEffect(() => {
     getData("activities").then((res) => setActivities(res.data.data));
     getData("categories").then((res) => setCategories(res.data.data));
   }, []);
-
-  const handleReset = () => {
-    const select = document.getElementById("select_categories");
-    select.value = "Select";
-    getData("activities").then((res) => setActivities(res.data.data));
-  };
-
-  const handleFilter = async () => {
-    const select = document.getElementById("select_categories");
-    const value = select.value;
-    getData(`activities-by-category/${value}`).then((res) =>
-      setActivities(res.data.data)
-    );
-  };
 
   return (
     <div
@@ -50,51 +53,36 @@ export default function Activities() {
             </p>
           </div>
         </div>
-        <div className="row">
-          <div className="col-7 d-flex align-items-center justify-content-end ">
-            <p className="m-0">Filter By Category</p>
-          </div>
-          <div className="col-5">
-            <select className="form-select" id="select_categories">
-              <option value="Select">Select</option>
-              {categories.map((category) => {
-                return (
-                  <option value={category.id} key={category.id}>
-                    {category.name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-        </div>
-        <div className="d-flex gap-3">
-          <button className="btn btn-success" onClick={handleFilter}>
-            Filter
-          </button>
-          <button className="btn btn-secondary" onClick={handleReset}>
-            Reset
-          </button>
-        </div>
       </div>
-      <div className="row mx-3 ">
-        {activities.length === 0 && (
-          <div
-            className="alert alert-info w-50 mx-auto text-center"
-            role="alert"
-          >
-            No activities found
-          </div>
+      <AliceCarousel
+        mouseTracking
+        infinite
+        autoPlay
+        autoPlayInterval={2000}
+        disableDotsControls
+        renderNextButton={() => (
+          <i
+            className={`bi bi-arrow-right-short fs-1 ${styles.arrow_button} ${styles.arrow_button_right}`}
+          ></i>
         )}
-        {activities.map((activity, index) => {
-          if (index < 6) {
-            return <CardActivity key={activity.id} activity={activity} />;
-          }
-        })}
-      </div>
+        renderPrevButton={() => (
+          <i
+            className={`bi bi-arrow-left-short fs-1 ${styles.arrow_button} ${styles.arrow_button_left}`}
+          ></i>
+        )}
+        responsive={responsive}
+      >
+        {activities.map((activity, index) => (
+          <div key={activity.id} className="mx-3">
+            <CardActivity key={activity.id} activity={activity} />
+          </div>
+        ))}
+      </AliceCarousel>
+
       <div className="d-flex justify-content-center">
         <Link href="/activity">
           <button className="btn btn-success">
-            See More <i className="bi bi-arrow-right"></i>
+            See All Activities <i className="bi bi-arrow-right"></i>
           </button>
         </Link>
       </div>

@@ -15,18 +15,33 @@
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 2rem;
 
 }
 
-
-@media screen and (max-width: 800px) {
-    .header {
-        flex-direction: column;
-        padding: 1rem;
-        gap: 1rem;
-    }
+.arrow_button {
+    position: absolute;
+    top: 40%;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;    
+    font-size: 20px;
 }
+
+.arrow_button_left {
+    left: 0;
+}
+
+.arrow_button_right {
+    right: 0;
+}
+
+.arrow_button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
