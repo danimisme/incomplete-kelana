@@ -5,6 +5,8 @@ import { toggleFormUser } from "@/redux/slices/FormUserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import useUpload from "@/services/useUpload";
+import useUpdate from "@/services/useUpdate";
+import { useRouter } from "next/navigation";
 
 export default function EditUserForm({ user }) {
   const dispatch = useDispatch();
@@ -12,6 +14,8 @@ export default function EditUserForm({ user }) {
   const [file, setFile] = useState(null);
   const [profilePictureUrl, setProfilePictureUrl] = useState(null);
   const { upload } = useUpload();
+  const { update } = useUpdate();
+  const router = useRouter();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -31,6 +35,23 @@ export default function EditUserForm({ user }) {
     }
   };
 
+  const handleUpdateUser = async (e) => {
+    e.preventDefault();
+    const userData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      phoneNumber: e.target.phoneNumber.value,
+      profilePictureUrl: profilePictureUrl || user?.profilePictureUrl,
+    };
+    try {
+      await update("update-profile", userData);
+      window.location.reload();
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleCloseForm = () => {
     dispatch(toggleFormUser());
     setProfilePictureUrl(null);
@@ -44,7 +65,7 @@ export default function EditUserForm({ user }) {
         isFormUserOpen ? styles.show : styles.hide
       }`}
     >
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleUpdateUser}>
         <h2>Edit User</h2>
         <i
           className={`${styles.close_btn} bi bi-x-circle fs-3`}
