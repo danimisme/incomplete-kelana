@@ -4,12 +4,15 @@ import Link from "next/link";
 import styles from "./Navbar.module.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { showSidebar, hideSidebar } from "@/redux/slices/SidebarSlice";
+import { useDispatch } from "react-redux";
 
 export default function Navbar() {
   const { userLog } = useAuth();
   const [user, setUser] = useState({});
   const router = useRouter();
   const [navStyle, setNavStyle] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getUserLogged();
@@ -44,7 +47,10 @@ export default function Navbar() {
     <nav className={`navbar fixed-top navbar-expand-lg  ${navStyle}`}>
       <div className="container-lg justify-content-between align-items-center">
         {user && user.role === "admin" && (
-          <div className={`${styles.setting_btn} mx-3`}>
+          <div
+            className={`${styles.setting_btn} mx-3`}
+            onClick={() => dispatch(showSidebar())}
+          >
             <i className="bi bi-sliders fs-3 "></i>
           </div>
         )}
