@@ -24,7 +24,7 @@ export default function UserPage() {
         <div className="col-lg-10 col-10 mx-auto">
           <h1>User Page</h1>
           <EditUserForm user={user} />
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
