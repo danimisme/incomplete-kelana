@@ -3,7 +3,7 @@ import { sidebarSlice } from "./slices/SidebarSlice";
 
 export const store = configureStore({
   reducer: {
-    sidebar: sidebarSlice,
+    sidebar: sidebarSlice.reducer,
   },
 });
 
