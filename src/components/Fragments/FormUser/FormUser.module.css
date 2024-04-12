@@ -18,6 +18,9 @@
     width: 450px;
     padding: 20px;
     border-radius: 10px;
+    transform: translate(0%,-100%);
+    transition: all 0.4s;
+    overflow-y: hidden;
 }
 
 .close_btn {
@@ -29,3 +32,27 @@
     cursor: pointer;
     color: red;
 }
+.image {
+    width: 30%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .show {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(0%,0%);
+  }
+  
+  .show .form {
+    transform: translate(0%,0%);
+  }
+
+  .hide .form {
+    transform: translate(0%,-100%);
+  }
