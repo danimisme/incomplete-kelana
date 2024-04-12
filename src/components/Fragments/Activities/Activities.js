@@ -92,7 +92,7 @@ export default function Activities() {
         })}
       </div>
       <div className="d-flex justify-content-center">
-        <Link href="/activities">
+        <Link href="/activity">
           <button className="btn btn-success">
             See More <i className="bi bi-arrow-right"></i>
           </button>
