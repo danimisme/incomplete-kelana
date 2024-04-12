@@ -7,7 +7,6 @@ import { toggleFormUser } from "@/redux/slices/FormUserSlice";
 export default function UserPage() {
   const { userLog } = useAuth();
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
     userLog("all-user", setUsers);
@@ -23,7 +22,6 @@ export default function UserPage() {
       <div className="row py-3">
         <div className="col-lg-10 col-10 mx-auto">
           <h1>User Page</h1>
-          <EditUserForm user={user} />
           <table className="table">
             <thead>
               <tr>
@@ -57,15 +55,7 @@ export default function UserPage() {
                   <td className="d-none d-md-table-cell">{user.email}</td>
                   <td className="d-none d-md-table-cell">{user.phoneNumber}</td>
                   <td>
-                    <button
-                      className="btn btn-success text-sm"
-                      onClick={() => handleEdit(user)}
-                    >
-                      Edit
-                    </button>
-                  </td>
-                  <td>
-                    <button className="btn btn-dark">Change role</button>
+                    <button className="btn btn-dark">Edit role</button>
                   </td>
                 </tr>
               ))}
