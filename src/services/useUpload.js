@@ -1,4 +1,4 @@
-import { axios } from "axios";
+import axios from "axios";
 
 export default function useUpload() {
   const upload = async (url, body) => {

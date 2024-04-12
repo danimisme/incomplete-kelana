@@ -3,10 +3,34 @@ import styles from "./FormUser.module.css";
 import Label from "@/components/Elements/input/Label";
 import { toggleFormUser } from "@/redux/slices/FormUserSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import useUpload from "@/services/useUpload";
 
 export default function EditUserForm({ user }) {
   const dispatch = useDispatch();
   const isFormUserOpen = useSelector((state) => state.formUser.isFormUserOpen);
+  const [file, setFile] = useState(null);
+  const [profilePictureUrl, setProfilePictureUrl] = useState(null);
+  const { upload } = useUpload();
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", file);
+    try {
+      const res = await upload("upload-image", formData);
+      setProfilePictureUrl(res.data.url);
+      console.log(res.data.url);
+      return res.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className={` ${styles.form_container} ${
@@ -21,7 +45,7 @@ export default function EditUserForm({ user }) {
         ></i>
         <div className="mb-3 d-flex align-items-center gap-3">
           <img
-            src={user?.profilePictureUrl}
+            src={profilePictureUrl || user?.profilePictureUrl}
             alt="Profile Picture"
             className={styles.image}
           />
@@ -30,8 +54,11 @@ export default function EditUserForm({ user }) {
               type="file"
               name="profilePictureUrl"
               id="profilePictureUrl"
+              onChange={handleFileChange}
             />
-            <button className="btn btn-success mt-3">Upload</button>
+            <button className="btn btn-success mt-3" onClick={handleUpload}>
+              Upload
+            </button>
           </div>
         </div>
         <div className=" mb-3">
