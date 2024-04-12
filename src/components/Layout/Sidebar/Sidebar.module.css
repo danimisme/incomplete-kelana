@@ -8,17 +8,27 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 100;
     transition: all 0.5s ease
 }
 
 .hide {
     transform: translate(-100%, 0);
     transition: all 0.5s ease;
-    opacity: 0;
 }
 
 .show {
     transform: translate(0, 0);
-    transition: all 0.5s ease
+    transition: all 0.5s ease;
+}
+
+.button {
+    position: absolute;
+    top: 60px;
+    right: -40px;
+    cursor: pointer;
+    z-index: 100;
+    background-color: #faf8f8; 
+    border-radius: 10%;
+    padding: 10px;
 }
