@@ -11,7 +11,7 @@ export default function UserPage() {
   return (
     <div className="mt-5 container-lg ">
       <div className="row py-3">
-        <div className="col-lg-8 col-10 mx-auto">
+        <div className="col-lg-10 col-10 mx-auto">
           <h1>User Page</h1>
           <table class="table">
             <thead>
@@ -21,6 +21,9 @@ export default function UserPage() {
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone Number</th>
+                <th scope="col" colSpan={2} className="text-center">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -38,6 +41,13 @@ export default function UserPage() {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.phoneNumber}</td>
+                  <td>
+                    <button className="btn btn-success text-sm">Edit</button>
+                  </td>
+                  <td>
+                    {" "}
+                    <button className="btn btn-dark">Change role</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
