@@ -73,7 +73,7 @@ export default function LoginForm() {
         </CheckBox>
         <div className="form-floating mb-3">
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             id="password"
             placeholder="Your Password"
