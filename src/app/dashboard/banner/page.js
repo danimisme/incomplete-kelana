@@ -23,10 +23,10 @@ export default function BannerPage() {
           <h1>
             Banner Page
             <button
-              className="btn btn-outline-success"
+              className="btn btn-outline-success ms-2"
               onClick={() => dispatch(toggleFormBanner())}
             >
-              <i className="bi bi-plus-circle"></i> Create Banner
+              <i className="bi bi-plus-circle me-2"></i> Create Banner
             </button>
           </h1>
           <table className="table">
