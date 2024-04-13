@@ -11,8 +11,11 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const { auth } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     const userData = {
       email: e.target.email.value,
@@ -22,7 +25,19 @@ export default function LoginForm() {
     try {
       const res = await auth("login", userData);
       console.log(res);
+      if (res.status === 200) {
+        setTimeout(() => {
+          router.push("/dashboard/user");
+          setMessage(null);
+          setIsLoading(false);
+        }, 1000);
+      }
     } catch (error) {
+      setMessage("Failed to login");
+      setTimeout(() => {
+        setMessage(null);
+        setIsLoading(false);
+      }, 2000);
       console.log(error);
     }
   };
@@ -56,7 +71,10 @@ export default function LoginForm() {
           />
           <Label htmlFor="password"> Your Password </Label>
         </div>
-        <button className="btn btn-primary">Login</button>
+        {message && <div className="alert alert-danger">{message}</div>}
+        <button className="btn btn-primary" disabled={isLoading}>
+          {isLoading ? "Loading..." : "Login"}
+        </button>
       </form>
       <p className="mt-3">
         Don&apos;t have an account? <Link href="/register">Register</Link>
