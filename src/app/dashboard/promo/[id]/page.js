@@ -4,25 +4,60 @@ import Label from "@/components/Elements/input/Label";
 import useGetData from "@/services/useGetData";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import useUpload from "@/services/useUpload";
 export default function DetailPromoPage({ params }) {
   const { getData } = useGetData();
   const [promo, setPromo] = useState({});
+  const [file, setFile] = useState(null);
+  const [imagePromoUrl, setImagePromoUrl] = useState(null);
+  const { upload } = useUpload();
   useEffect(() => {
     getData(`promo/${params.id}`).then((res) => setPromo(res?.data?.data));
   }, []);
-  console.log(promo);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", file);
+    try {
+      const res = await upload("upload-image", formData);
+      setImagePromoUrl(res.data.url);
+      console.log(res);
+      return res.data.url;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="mt-5 container-lg">
       <div className="row py-5">
         <h1 className="text-center mb-3">Edit Promo</h1>
         <div className="col-lg-6 col-10 mx-auto">
-          <img src={promo.imageUrl} alt={promo.title} className="img-fluid" />
+          <img
+            src={imagePromoUrl || promo.imageUrl}
+            alt={promo.title}
+            className="img-fluid"
+          />
           <div className="my-3">
             <Label className="form-label" htmlFor="imageUrl">
               Image File
             </Label>
-            <Input type="file" className="form-control" id="imageUrl" />
-            <button className="btn btn-primary mt-2" type="button">
+            <Input
+              type="file"
+              className="form-control"
+              id="imageUrl"
+              onChange={handleFileChange}
+            />
+            <button
+              className="btn btn-primary mt-2"
+              type="button"
+              onClick={handleUpload}
+            >
               Upload Image
             </button>
           </div>
