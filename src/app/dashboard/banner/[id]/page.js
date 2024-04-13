@@ -4,6 +4,7 @@ import Label from "@/components/Elements/input/Label";
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 import useUpload from "@/services/useUpload";
+import useUpdate from "@/services/useUpdate";
 
 export default function DetailBannerPage({ params }) {
   const { getData } = useGetData();
@@ -11,6 +12,7 @@ export default function DetailBannerPage({ params }) {
   const [bannerImageUrl, setBannerImageUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { upload } = useUpload();
+  const { update } = useUpdate();
   useEffect(() => {
     getData(`banner/${params.id}`).then((res) => setBanner(res?.data?.data));
   }, []);
@@ -24,13 +26,27 @@ export default function DetailBannerPage({ params }) {
     try {
       const res = await upload("upload-image", formData);
       setBannerImageUrl(res.data.url);
-      console.log(res.data.url);
       setIsLoading(false);
       return res.data.url;
     } catch (error) {
       console.log(error);
     }
   };
+
+  const handleUpdateBanner = async (e) => {
+    e.preventDefault();
+    const bannerData = {
+      name: e.target.name.value,
+      imageUrl: bannerImageUrl || banner?.imageUrl,
+    };
+    try {
+      await update(`update-banner/${params.id}`, bannerData);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="mt-5 container-lg">
       <div className="row py-3">
@@ -43,7 +59,7 @@ export default function DetailBannerPage({ params }) {
           />
         </div>
         <div className="col-lg-6 col-10">
-          <form action="">
+          <form onSubmit={handleUpdateBanner}>
             <div className="mb-3">
               <Label htmlFor="name" className="form-label">
                 Banner Name
