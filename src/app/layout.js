@@ -1,5 +1,5 @@
-import "bootstrap/dist/css/bootstrap.css";
 import "./globals.css";
+import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import BootstrapClient from "@/components/BootstrapClient";
 import { Inter } from "next/font/google";
@@ -17,9 +17,9 @@ export default function RootLayout({ children }) {
     <StoreProvider>
       <html lang="en">
         <body className={inter.className}>
+          <BootstrapClient />
           <Navbar />
           {children}
-          <BootstrapClient />
         </body>
       </html>
     </StoreProvider>

@@ -1,5 +1,8 @@
+"use client";
 import { Merriweather, Gothic_A1, Gabarito } from "next/font/google";
 import styles from "./page.module.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Banner from "@/components/Fragments/Banner/Banner";
 import Promo from "@/components/Fragments/Promo/Promo";
 import Categories from "@/components/Fragments/Categories/Categories";
