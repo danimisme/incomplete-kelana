@@ -1,6 +1,7 @@
 "use client";
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function PromoPage() {
   const { getData } = useGetData();
@@ -37,7 +38,9 @@ export default function PromoPage() {
                       : promo.description}
                   </td>
                   <td>
-                    <button className="btn btn-outline-success">Edit</button>
+                    <Link href={`/dashboard/promo/${promo.id}`}>
+                      <button className="btn btn-outline-success">Edit</button>
+                    </Link>
                   </td>
                   <td>
                     <button className="btn btn-outline-danger">Delete</button>
