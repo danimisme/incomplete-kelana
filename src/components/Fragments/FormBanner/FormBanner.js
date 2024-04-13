@@ -26,7 +26,7 @@ export default function FormBanner() {
         ></i>
         <h1>Create Banner</h1>
         <div className="mb-3">
-          <img src={imageUrl} alt="upload-img" />
+          <img src={imageUrl} alt="upload-img" className={styles.image} />
         </div>
         <div className="mb-3">
           <Label htmlFor="image">Image File</Label>
