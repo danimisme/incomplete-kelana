@@ -19,8 +19,12 @@ export default function LoginForm() {
       password: e.target.password.value,
     };
 
-    await auth("login", userData);
-    window.location.href = "/";
+    try {
+      const res = await auth("login", userData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
