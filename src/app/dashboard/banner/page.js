@@ -5,10 +5,13 @@ import useGetData from "@/services/useGetData";
 import styles from "./BannerPage.module.css";
 import Link from "next/link";
 import FormBanner from "@/components/Fragments/FormBanner/FormBanner";
+import { useDispatch } from "react-redux";
+import { toggleFormBanner } from "@/redux/slices/FormBannerSlice";
 
 export default function BannerPage() {
   const { getData } = useGetData();
   const [banners, setBanners] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     getData("banners").then((res) => setBanners(res.data.data));
   });
@@ -19,7 +22,10 @@ export default function BannerPage() {
           <FormBanner />
           <h1>
             Banner Page
-            <button className="btn btn-outline-success">
+            <button
+              className="btn btn-outline-success"
+              onClick={() => dispatch(toggleFormBanner())}
+            >
               <i className="bi bi-plus-circle"></i> Create Banner
             </button>
           </h1>
