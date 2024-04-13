@@ -9,8 +9,6 @@ export default function FormBanner() {
     (state) => state.formBanner.isFormBannerOpen
   );
   const handleCloseForm = (e) => {
-    e.preventDefault();
-    e.reset();
     dispatch(toggleFormBanner());
   };
   return (
