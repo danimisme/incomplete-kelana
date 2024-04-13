@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { sidebarSlice } from "./slices/SidebarSlice";
 import { formUserSlice } from "./slices/FormUserSlice";
+import { formBannerSlice } from "./slices/FormBannerSlice";
 
 export const store = configureStore({
   reducer: {
