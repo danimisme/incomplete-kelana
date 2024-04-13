@@ -21,7 +21,7 @@ export default function BannerPage() {
               <i className="bi bi-plus-circle"></i> Create Banner
             </button>
           </h1>
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
