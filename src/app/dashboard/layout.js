@@ -6,6 +6,11 @@ import Sidebar from "@/components/Layout/Sidebar/Sidebar";
 import { StoreProvider } from "@/redux/StoreProvider";
 const inter = Inter({ subsets: ["latin"] });
 
+export const metadata = {
+  title: "Dashboard",
+  description: "Dhashboard of Kelana",
+};
+
 export default function DashboardLayout({ children }) {
   return (
     <StoreProvider>
