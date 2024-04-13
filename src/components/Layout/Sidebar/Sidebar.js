@@ -14,7 +14,7 @@ export default function Sidebar() {
     <div
       className={` ${styles.sidebar} ${
         sidebarShow ? styles.show : styles.hide
-      }`}
+      } mt-5 `}
     >
       <div className={styles.button} onClick={() => dispacth(toggleSidebar())}>
         {sidebarShow ? (
