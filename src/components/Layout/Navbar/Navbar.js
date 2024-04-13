@@ -4,32 +4,24 @@ import Link from "next/link";
 import styles from "./Navbar.module.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { toggleSidebar } from "@/redux/slices/SidebarSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearUser } from "@/redux/slices/UserLoggedSlice";
 
 export default function Navbar() {
   const { userLog } = useAuth();
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const router = useRouter();
   const [navStyle, setNavStyle] = useState("");
+  const user = useSelector((state) => state.userLogged.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getUserLogged();
     window.addEventListener("scroll", handleScroll);
   }, []);
 
-  const getUserLogged = () => {
-    if (localStorage.getItem("token")) {
-      userLog("user", (res) => {
-        setUser(res);
-      });
-    }
-  };
-
   const logout = async () => {
     await userLog("logout");
-    setUser({});
+    dispatch(clearUser());
     router.push("/login");
   };
 
@@ -84,7 +76,7 @@ export default function Navbar() {
                 Promo
               </Link>
             </li>
-            {user.role === "admin" && (
+            {user?.role === "admin" && (
               <li className="nav-item ms-lg-3">
                 <Link href="/dashboard/user" className="nav-link">
                   Dashboard
@@ -97,7 +89,7 @@ export default function Navbar() {
           className="collapse navbar-collapse justify-content-end align-items-start "
           id="navbarSupportedContent"
         >
-          {user.name ? (
+          {user?.name ? (
             <div className="nav-link dropdown ">
               <Link
                 href="/"
