@@ -6,14 +6,17 @@ import Link from "next/link";
 import { useState } from "react";
 import CheckBox from "../Elements/CheckBox";
 import useAuth from "@/services/useAuth";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/slices/UserLoggedSlice";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const { auth } = useAuth();
+  const { userLog } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
-
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -24,8 +27,8 @@ export default function LoginForm() {
 
     try {
       const res = await auth("login", userData);
-      console.log(res);
       if (res.status === 200) {
+        getUserLogged();
         setTimeout(() => {
           router.push("/dashboard/user");
           setMessage(null);
@@ -39,6 +42,12 @@ export default function LoginForm() {
         setIsLoading(false);
       }, 2000);
       console.log(error);
+    }
+  };
+
+  const getUserLogged = () => {
+    if (localStorage.getItem("token")) {
+      userLog("user", (res) => dispatch(setUser(res)));
     }
   };
 
