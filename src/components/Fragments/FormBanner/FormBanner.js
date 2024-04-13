@@ -4,14 +4,32 @@ import Input from "@/components/Elements/input/Input";
 import { toggleFormBanner } from "@/redux/slices/FormBannerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import useUpload from "@/services/useUpload";
 export default function FormBanner() {
   const dispatch = useDispatch();
   const [imageUrl, setImageUrl] = useState("/images/pngtree-image-upload.jpg");
+  const { upload } = useUpload();
+  const [isLoading, setIsLoading] = useState(false);
   const isFormBannerOpen = useSelector(
     (state) => state.formBanner.isFormBannerOpen
   );
   const handleCloseForm = () => {
     dispatch(toggleFormBanner());
+  };
+
+  const handleFileChange = async (e) => {
+    setIsLoading(true);
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await upload("upload-image", formData);
+      setImageUrl(res.data.url);
+      return res.data.url;
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div
@@ -30,14 +48,21 @@ export default function FormBanner() {
         </div>
         <div className="mb-3">
           <Label htmlFor="image">Image File</Label>
-          <Input type="file" name="image" id="image" />
+          <Input
+            type="file"
+            name="image"
+            id="image"
+            onChange={handleFileChange}
+          />
         </div>
         <div className="mb-3">
           <Label htmlFor="name">Name</Label>
           <Input type="text" name="name" id="name" />
         </div>
 
-        <button className="btn btn-outline-success">Submit</button>
+        <button className="btn btn-outline-success" disabled={isLoading}>
+          {isLoading ? "Loading..." : "Submit"}
+        </button>
       </form>
     </div>
   );
