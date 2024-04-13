@@ -1,3 +1,4 @@
+import axios from "axios";
 export default function useDelete() {
   const deleteData = async (url) => {
     try {
