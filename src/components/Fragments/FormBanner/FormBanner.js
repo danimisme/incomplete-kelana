@@ -3,12 +3,14 @@ import styles from "./FormBanner.module.css";
 import Input from "@/components/Elements/input/Input";
 import { toggleFormBanner } from "@/redux/slices/FormBannerSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 export default function FormBanner() {
   const dispatch = useDispatch();
+  const [imageUrl, setImageUrl] = useState("/images/pngtree-image-upload.jpg");
   const isFormBannerOpen = useSelector(
     (state) => state.formBanner.isFormBannerOpen
   );
-  const handleCloseForm = (e) => {
+  const handleCloseForm = () => {
     dispatch(toggleFormBanner());
   };
   return (
@@ -23,6 +25,9 @@ export default function FormBanner() {
           onClick={() => handleCloseForm()}
         ></i>
         <h1>Create Banner</h1>
+        <div className="mb-3">
+          <img src={imageUrl} alt="upload-img" />
+        </div>
         <div className="mb-3">
           <Label htmlFor="image">Image File</Label>
           <Input type="file" name="image" id="image" />
