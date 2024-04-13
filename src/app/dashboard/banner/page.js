@@ -7,14 +7,28 @@ import Link from "next/link";
 import FormBanner from "@/components/Fragments/FormBanner/FormBanner";
 import { useDispatch } from "react-redux";
 import { toggleFormBanner } from "@/redux/slices/FormBannerSlice";
+import useDelete from "@/services/useDelete";
 
 export default function BannerPage() {
   const { getData } = useGetData();
   const [banners, setBanners] = useState([]);
   const dispatch = useDispatch();
+  const { deleteData } = useDelete();
   useEffect(() => {
     getData("banners").then((res) => setBanners(res.data.data));
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteData(`delete-banner/${id}`);
+      if (res.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="mt-5 container-lg">
       <div className="row py-5">
@@ -58,7 +72,12 @@ export default function BannerPage() {
                     </Link>
                   </td>
                   <td>
-                    <button className="btn btn-outline-danger">Delete</button>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => handleDelete(banner.id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               </tbody>
