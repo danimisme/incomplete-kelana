@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useGetData from "@/services/useGetData";
 import styles from "./BannerPage.module.css";
 import Link from "next/link";
+import FormBanner from "@/components/Fragments/FormBanner/FormBanner";
 
 export default function BannerPage() {
   const { getData } = useGetData();
@@ -15,8 +16,9 @@ export default function BannerPage() {
     <div className="mt-5 container-lg">
       <div className="row py-5">
         <div className="col-lg-10 col-10 mx-auto">
+          <FormBanner />
           <h1>
-            Banner Page{" "}
+            Banner Page
             <button className="btn btn-outline-success">
               <i className="bi bi-plus-circle"></i> Create Banner
             </button>
