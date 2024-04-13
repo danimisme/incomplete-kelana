@@ -31,13 +31,23 @@ export default function FormBanner() {
       console.log(error);
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const banner = {
+      name: e.target.name.value,
+      imageUrl: imageUrl,
+    };
+    console.log(banner);
+  };
+
   return (
     <div
       className={`${styles.form_container} ${
         isFormBannerOpen ? styles.show : styles.hide
       }`}
     >
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <i
           className={`${styles.close_btn} bi bi-x-circle fs-3`}
           onClick={() => handleCloseForm()}
