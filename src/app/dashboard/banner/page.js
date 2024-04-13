@@ -13,7 +13,7 @@ export default function BannerPage() {
   });
   return (
     <div className="mt-5 container-lg">
-      <div className="row py-3">
+      <div className="row py-5">
         <div className="col-lg-10 col-10 mx-auto">
           <h1>
             Banner Page{" "}
