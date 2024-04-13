@@ -5,12 +5,14 @@ import useGetData from "@/services/useGetData";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import useUpload from "@/services/useUpload";
+import useUpdate from "@/services/useUpdate";
 export default function DetailPromoPage({ params }) {
   const { getData } = useGetData();
   const [promo, setPromo] = useState({});
   const [file, setFile] = useState(null);
   const [imagePromoUrl, setImagePromoUrl] = useState(null);
   const { upload } = useUpload();
+  const { update } = useUpdate();
   useEffect(() => {
     getData(`promo/${params.id}`).then((res) => setPromo(res?.data?.data));
   }, []);
@@ -33,37 +35,58 @@ export default function DetailPromoPage({ params }) {
     }
   };
 
+  const handleUpdatePromo = async (e) => {
+    e.preventDefault();
+    const promoData = {
+      title: e.target.title.value,
+      description: e.target.description.value,
+      imageUrl: imagePromoUrl || promo?.imageUrl,
+      terms_condition: e.target.terms_condition.value,
+      promo_code: e.target.promo_code.value,
+      promo_discount_price: Number(e.target.promo_discount_price.value),
+      minimum_claim_price: Number(e.target.minimum_claim_price.value),
+    };
+    try {
+      const res = await update(`update-promo/${params.id}`, promoData);
+      if (res.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="mt-5 container-lg">
-      <div className="row py-5">
-        <h1 className="text-center mb-3">Edit Promo</h1>
-        <div className="col-lg-6 col-10 mx-auto">
-          <img
-            src={imagePromoUrl || promo.imageUrl}
-            alt={promo.title}
-            className="img-fluid"
-          />
-          <div className="my-3">
-            <Label className="form-label" htmlFor="imageUrl">
-              Image File
-            </Label>
-            <Input
-              type="file"
-              className="form-control"
-              id="imageUrl"
-              onChange={handleFileChange}
+      <form onSubmit={handleUpdatePromo}>
+        <div className="row py-5">
+          <h1 className="text-center mb-3">Edit Promo</h1>
+          <div className="col-lg-6 col-10 mx-auto">
+            <img
+              src={imagePromoUrl || promo.imageUrl}
+              alt={promo.title}
+              className="img-fluid"
             />
-            <button
-              className="btn btn-primary mt-2"
-              type="button"
-              onClick={handleUpload}
-            >
-              Upload Image
-            </button>
+            <div className="my-3">
+              <Label className="form-label" htmlFor="imageUrl">
+                Image File
+              </Label>
+              <Input
+                type="file"
+                className="form-control"
+                id="imageUrl"
+                onChange={handleFileChange}
+              />
+              <button
+                className="btn btn-primary mt-2"
+                type="button"
+                onClick={handleUpload}
+              >
+                Upload Image
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="col-lg-6 col-10 mx-auto">
-          <form action="">
+          <div className="col-lg-6 col-10 mx-auto">
             <div className="mb-3">
               <Label htmlFor="title" className="form-label">
                 Title
@@ -130,11 +153,13 @@ export default function DetailPromoPage({ params }) {
               Edit Promo
             </button>
             <Link href="/dashboard/promo">
-              <button className="btn btn-secondary mx-2">Back</button>
+              <button className="btn btn-secondary mx-2" type="button">
+                Back
+              </button>
             </Link>
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
