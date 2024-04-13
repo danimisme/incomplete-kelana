@@ -50,7 +50,7 @@ export default function DetailBannerPage({ params }) {
   return (
     <div className="mt-5 container-lg">
       <div className="row py-3">
-        <h1>Detail Banner</h1>
+        <h1 className="mb-3 text-center">Edit Banner</h1>
         <div className="col-lg-6 col-10">
           <img
             src={bannerImageUrl || banner?.imageUrl}
