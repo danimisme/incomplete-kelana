@@ -8,10 +8,11 @@ import useUpload from "@/services/useUpload";
 import useCreate from "@/services/useCreate";
 export default function FormBanner() {
   const dispatch = useDispatch();
-  const [imageUrl, setImageUrl] = useState("/images/pngtree-image-upload.jpg");
+  const [imageUrl, setImageUrl] = useState(null);
   const { upload } = useUpload();
   const [isLoading, setIsLoading] = useState(false);
   const { create } = useCreate();
+  const [massage, setMassage] = useState(null);
   const isFormBannerOpen = useSelector(
     (state) => state.formBanner.isFormBannerOpen
   );
@@ -36,16 +37,26 @@ export default function FormBanner() {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     const bannerData = {
       name: e.target.name.value,
       imageUrl: imageUrl,
     };
     try {
-      await create("create-banner", bannerData);
-      window.location.reload();
-      handleCloseForm();
+      const res = await create("create-banner", bannerData);
+      console.log(res);
+      if (res.status === 200) {
+        window.location.reload();
+        dispatch(toggleFormBanner());
+        setIsLoading(false);
+      }
     } catch (error) {
+      setMassage("Failed to create banner");
+      setTimeout(() => {
+        setMassage(null);
+        setIsLoading(false);
+      }, 2000);
       console.log(error);
     }
   };
@@ -63,7 +74,11 @@ export default function FormBanner() {
         ></i>
         <h1>Create Banner</h1>
         <div className="mb-3">
-          <img src={imageUrl} alt="upload-img" className={styles.image} />
+          <img
+            src={imageUrl || "/images/pngtree-image-upload.jpg"}
+            alt="upload-img"
+            className={styles.image}
+          />
         </div>
         <div className="mb-3">
           <Label htmlFor="image">Image File</Label>
@@ -78,7 +93,7 @@ export default function FormBanner() {
           <Label htmlFor="name">Name</Label>
           <Input type="text" name="name" id="name" />
         </div>
-
+        {massage && <p className="text-danger">{massage}</p>}
         <button className="btn btn-outline-success" disabled={isLoading}>
           {isLoading ? "Loading..." : "Submit"}
         </button>

@@ -14,7 +14,7 @@ export default function BannerPage() {
   const dispatch = useDispatch();
   useEffect(() => {
     getData("banners").then((res) => setBanners(res.data.data));
-  });
+  }, []);
   return (
     <div className="mt-5 container-lg">
       <div className="row py-5">
