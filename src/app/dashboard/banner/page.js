@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import useGetData from "@/services/useGetData";
 import styles from "./BannerPage.module.css";
+import Link from "next/link";
 
 export default function BannerPage() {
   const { getData } = useGetData();
@@ -44,7 +45,9 @@ export default function BannerPage() {
                     />
                   </td>
                   <td>
-                    <button className="btn btn-outline-info">View</button>
+                    <Link href={`/dashboard/banner/${banner.id}`}>
+                      <button className="btn btn-outline-info">View</button>
+                    </Link>
                   </td>
                   <td>
                     <button className="btn btn-outline-success">Edit</button>
