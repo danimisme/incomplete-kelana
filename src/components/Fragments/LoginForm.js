@@ -18,7 +18,18 @@ export default function LoginForm() {
   const [message, setMessage] = useState(null);
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
+
+    if (!e.target.email.value || !e.target.password.value) {
+      setMessage("Email Or Password Is Cannot Be Empty");
+      setTimeout(() => {
+        setMessage(null);
+        setIsLoading(false);
+      }, 3000);
+      return false;
+    }
+
     e.preventDefault();
     const userData = {
       email: e.target.email.value,
@@ -55,6 +66,8 @@ export default function LoginForm() {
     <div>
       <h1>Login</h1>
       <p>Enter your credentials</p>
+      {message && <div className="alert alert-danger">{message}</div>}
+
       <form onSubmit={handleSubmit}>
         <div className="form-floating mb-3">
           <Input
@@ -80,7 +93,6 @@ export default function LoginForm() {
           />
           <Label htmlFor="password"> Your Password </Label>
         </div>
-        {message && <div className="alert alert-danger">{message}</div>}
         <button className="btn btn-primary" disabled={isLoading}>
           {isLoading ? "Loading..." : "Login"}
         </button>
