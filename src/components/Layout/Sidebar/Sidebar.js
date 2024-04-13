@@ -34,7 +34,12 @@ export default function Sidebar() {
         >
           <li className="list-group-item">Banner</li>
         </Link>
-        <li className="list-group-item">Promo</li>
+        <Link
+          href="/dashboard/promo"
+          className="text-decoration-none text-dark"
+        >
+          <li className="list-group-item">Promo</li>
+        </Link>
         <li className="list-group-item">Categoty</li>
         <li className="list-group-item">Activity</li>
       </ul>
