@@ -46,14 +46,6 @@ export default function Navbar() {
   return (
     <nav className={`navbar fixed-top navbar-expand-lg  ${navStyle}`}>
       <div className="container-lg justify-content-between align-items-center">
-        {user && user.role === "admin" && (
-          <div
-            className={`${styles.setting_btn} mx-3`}
-            onClick={() => dispatch(toggleSidebar())}
-          >
-            <i className="bi bi-sliders fs-3 "></i>
-          </div>
-        )}
         <div className="navbar-brand">
           <h2 className="m-0">Kelana</h2>
         </div>
@@ -92,6 +84,13 @@ export default function Navbar() {
                 Promo
               </Link>
             </li>
+            {user.role === "admin" && (
+              <li className="nav-item ms-lg-3">
+                <Link href="/dashboard/user" className="nav-link">
+                  Dashboard
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
         <div
