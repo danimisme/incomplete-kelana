@@ -22,7 +22,7 @@ export default function UserPage() {
       <div className="row py-3">
         <div className="col-lg-10 col-10 mx-auto">
           <h1>User Page</h1>
-          <table className="table">
+          <table className="table table-striped table-bordered ">
             <thead>
               <tr>
                 <th scope="col">#</th>
