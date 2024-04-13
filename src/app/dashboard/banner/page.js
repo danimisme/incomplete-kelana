@@ -46,11 +46,8 @@ export default function BannerPage() {
                   </td>
                   <td>
                     <Link href={`/dashboard/banner/${banner.id}`}>
-                      <button className="btn btn-outline-info">View</button>
+                      <button className="btn btn-outline-info">Edit</button>
                     </Link>
-                  </td>
-                  <td>
-                    <button className="btn btn-outline-success">Edit</button>
                   </td>
                   <td>
                     <button className="btn btn-outline-danger">Delete</button>
