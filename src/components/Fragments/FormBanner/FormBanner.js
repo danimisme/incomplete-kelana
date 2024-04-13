@@ -5,11 +5,13 @@ import { toggleFormBanner } from "@/redux/slices/FormBannerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import useUpload from "@/services/useUpload";
+import useCreate from "@/services/useCreate";
 export default function FormBanner() {
   const dispatch = useDispatch();
   const [imageUrl, setImageUrl] = useState("/images/pngtree-image-upload.jpg");
   const { upload } = useUpload();
   const [isLoading, setIsLoading] = useState(false);
+  const { create } = useCreate();
   const isFormBannerOpen = useSelector(
     (state) => state.formBanner.isFormBannerOpen
   );
@@ -26,6 +28,7 @@ export default function FormBanner() {
     try {
       const res = await upload("upload-image", formData);
       setImageUrl(res.data.url);
+      setIsLoading(false);
       return res.data.url;
     } catch (error) {
       console.log(error);
@@ -34,11 +37,17 @@ export default function FormBanner() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const banner = {
+    const bannerData = {
       name: e.target.name.value,
       imageUrl: imageUrl,
     };
-    console.log(banner);
+    try {
+      await create("create-banner", bannerData);
+      window.location.reload();
+      handleCloseForm();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
