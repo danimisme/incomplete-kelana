@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "@/redux/slices/UserLoggedSlice";
+import { setUser } from "@/redux/slices/UserLoggedSlice";
 
 export default function Navbar() {
   const { userLog } = useAuth();
@@ -17,6 +18,7 @@ export default function Navbar() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+    getUserLogged();
   }, []);
 
   const logout = async () => {
@@ -32,6 +34,12 @@ export default function Navbar() {
       setNavStyle(styles.scrolled);
     } else {
       setNavStyle(styles.show);
+    }
+  };
+
+  const getUserLogged = () => {
+    if (localStorage.getItem("token")) {
+      userLog("user", (res) => dispatch(setUser(res)));
     }
   };
 
