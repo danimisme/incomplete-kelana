@@ -12,7 +12,12 @@ export default function CategoryPage() {
     <div className="mt-5 container-lg">
       <div className="row py-5">
         <div className="col-lg-10 col-10 mx-auto">
-          <h1>Category Data</h1>
+          <div className="d-flex mb-3 align-items-center">
+            <h1>Category Data</h1>
+            <button className="btn btn-outline-success ms-2">
+              <i className="bi bi-plus-circle fs-5 me-2"></i>Create Category
+            </button>
+          </div>
           <table className="table table-striped table-bordered">
             <thead>
               <tr>
