@@ -5,6 +5,7 @@ import Input from "@/components/Elements/input/Input";
 import Label from "@/components/Elements/input/Label";
 import Link from "next/link";
 import useUpload from "@/services/useUpload";
+import useUpdate from "@/services/useUpdate";
 
 export default function DetailCategoryPage({ params }) {
   const { getData } = useGetData();
@@ -13,6 +14,7 @@ export default function DetailCategoryPage({ params }) {
   const { upload } = useUpload();
   const [categoryImageUrl, setCategoryImageUrl] = useState(null);
   const [massage, setMassage] = useState(null);
+  const { update } = useUpdate();
 
   useEffect(() => {
     getData(`category/${params.id}`).then((res) =>
