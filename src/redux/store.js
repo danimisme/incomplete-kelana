@@ -3,6 +3,7 @@ import { sidebarSlice } from "./slices/SidebarSlice";
 import { formUserSlice } from "./slices/FormUserSlice";
 import { formBannerSlice } from "./slices/FormBannerSlice";
 import { userLoggedSlice } from "./slices/UserLoggedSlice";
+import { formCategorySlice } from "./slices/FormCategorySlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     formUser: formUserSlice.reducer,
     formBanner: formBannerSlice.reducer,
     userLogged: userLoggedSlice.reducer,
+    formCategory: formCategorySlice.reducer,
   },
 });
 
