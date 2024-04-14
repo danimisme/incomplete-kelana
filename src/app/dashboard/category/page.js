@@ -1,5 +1,6 @@
 "use client";
 import useGetData from "@/services/useGetData";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function CategoryPage() {
   const { getData } = useGetData();
@@ -7,7 +8,6 @@ export default function CategoryPage() {
   useEffect(() => {
     getData("categories").then((res) => setCategories(res.data.data));
   }, []);
-  console.log(categories);
   return (
     <div className="mt-5 container-lg">
       <div className="row py-5">
@@ -38,9 +38,12 @@ export default function CategoryPage() {
                     />
                   </td>
                   <td className="text-center">
-                    <button className="btn btn-outline-success me-2 mb-2 mb-md-0">
-                      Edit
-                    </button>
+                    <Link
+                      href={`/dashboard/category/${category.id}`}
+                      className="me-2 mb-2 mb-md-0"
+                    >
+                      <button className="btn btn-outline-success ">Edit</button>
+                    </Link>
                     <button className="btn btn-outline-danger">Delete</button>
                   </td>
                 </tr>
