@@ -4,7 +4,7 @@ const initialState = {
   isFormCategoryOpen: false,
 };
 
-const formCategorySlice = createSlice({
+export const formCategorySlice = createSlice({
   name: "formCategory",
   initialState,
   reducers: {
