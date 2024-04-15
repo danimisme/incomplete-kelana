@@ -1,10 +1,14 @@
 "use client";
+import FormCategory from "@/components/Fragments/FormCategory/FormCategory";
 import useGetData from "@/services/useGetData";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toggleFormCategory } from "@/redux/slices/FormCategorySlice";
+import { useDispatch } from "react-redux";
 export default function CategoryPage() {
   const { getData } = useGetData();
   const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     getData("categories").then((res) => setCategories(res.data.data));
   }, []);
@@ -14,7 +18,10 @@ export default function CategoryPage() {
         <div className="col-lg-10 col-10 mx-auto">
           <div className="d-flex mb-3 align-items-center">
             <h1>Category Data</h1>
-            <button className="btn btn-outline-success ms-2">
+            <button
+              className="btn btn-outline-success ms-2"
+              onClick={() => dispatch(toggleFormCategory())}
+            >
               <i className="bi bi-plus-circle fs-5 me-2"></i>Create Category
             </button>
           </div>
@@ -57,6 +64,7 @@ export default function CategoryPage() {
           </table>
         </div>
       </div>
+      <FormCategory />
     </div>
   );
 }
