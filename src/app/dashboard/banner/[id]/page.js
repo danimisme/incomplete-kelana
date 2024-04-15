@@ -13,6 +13,7 @@ export default function DetailBannerPage({ params }) {
   const [isLoading, setIsLoading] = useState(false);
   const { upload } = useUpload();
   const { update } = useUpdate();
+  const [message, setMessage] = useState(null);
   useEffect(() => {
     getData(`banner/${params.id}`).then((res) => setBanner(res?.data?.data));
   }, []);
@@ -21,6 +22,13 @@ export default function DetailBannerPage({ params }) {
     e.preventDefault();
     setIsLoading(true);
     const file = e.target.files[0];
+    if (!file.type.startsWith("image/")) {
+      setMessage(
+        "File harus berupa gambar dengan format JPEG, PNG, GIF, BMP, atau TIFF."
+      );
+      return;
+    }
+
     const formData = new FormData();
     formData.append("image", file);
     try {
@@ -30,6 +38,9 @@ export default function DetailBannerPage({ params }) {
       return res.data.url;
     } catch (error) {
       console.log(error);
+      setMessage(
+        "Failed to upload image, Maybe the image is too big, try another image."
+      );
     }
   };
 
@@ -77,8 +88,9 @@ export default function DetailBannerPage({ params }) {
               </Label>
               <Input type="file" onChange={handleFileChange} id="image" />
             </div>
+            {message && <p className="text-danger">{message}</p>}
             <button className="btn btn-success" disabled={isLoading}>
-              {isLoading ? "Loading..." : "Edit"}
+              Edit
             </button>
           </form>
         </div>
