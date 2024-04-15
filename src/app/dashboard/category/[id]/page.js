@@ -6,6 +6,7 @@ import Label from "@/components/Elements/input/Label";
 import Link from "next/link";
 import useUpload from "@/services/useUpload";
 import useUpdate from "@/services/useUpdate";
+import styles from "./DetailCategoryPage.module.css";
 
 export default function DetailCategoryPage({ params }) {
   const { getData } = useGetData();
@@ -66,11 +67,11 @@ export default function DetailCategoryPage({ params }) {
     <div className="mt-5 container-lg">
       <div className="row py-3">
         <h1 className="mb-3 text-center">Edit Category</h1>
-        <div className="col-lg-6 col-10">
+        <div className="col-lg-6 col-6 mx-auto ">
           <img
             src={categoryImageUrl || category?.imageUrl}
             alt={category?.title}
-            className="img-fluid"
+            className={styles.image}
           />
         </div>
         <div className="col-lg-6 col-10">
