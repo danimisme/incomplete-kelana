@@ -2,13 +2,24 @@
 import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import useDelete from "@/services/useDelete";
 
 export default function PromoPage() {
   const { getData } = useGetData();
   const [promos, setPromos] = useState([]);
+  const { deleteData } = useDelete();
   useEffect(() => {
     getData("promos").then((res) => setPromos(res.data.data));
   }, []);
+
+  const handleDelete = (id) => {
+    deleteData(`delete-promo/${id}`).then((res) => {
+      if (res.status === 200) {
+        window.location.reload();
+      }
+    });
+  };
+
   return (
     <div className="mt-5 container-lg">
       <div className="row py-5">
@@ -50,7 +61,12 @@ export default function PromoPage() {
                     </Link>
                   </td>
                   <td>
-                    <button className="btn btn-outline-danger">Delete</button>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => handleDelete(promo.id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
