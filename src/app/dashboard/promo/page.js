@@ -15,9 +15,11 @@ export default function PromoPage() {
         <div className="col-lg-10 col-10 mx-auto ">
           <div className="d-flex mb-3 align-items-center">
             <h1>Data Promo</h1>
-            <button className="btn btn-success ms-2">
-              <i className="bi bi-plus-circle fs-5 me-2"></i>Create Promo
-            </button>
+            <Link href={`/dashboard/promo/create-promo`}>
+              <button className="btn btn-success ms-2">
+                <i className="bi bi-plus-circle fs-5 me-2"></i>Create Promo
+              </button>
+            </Link>
           </div>
           <table className="table table-striped table-bordered">
             <thead>
