@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toggleFormCategory } from "@/redux/slices/FormCategorySlice";
 import { useDispatch } from "react-redux";
+import styles from "./CategoryPage.module.css";
 export default function CategoryPage() {
   const { getData } = useGetData();
   const [categories, setCategories] = useState([]);
@@ -45,8 +46,7 @@ export default function CategoryPage() {
                     <img
                       src={category.imageUrl}
                       alt={category.name}
-                      width={100}
-                      height={100}
+                      className={styles.image}
                     />
                   </td>
                   <td className="text-center">
