@@ -15,6 +15,13 @@ export default function FormCategory() {
   const [imageUrl, setImageUrl] = useState(null);
   const [massage, setMassage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const handleCloseForm = () => {
+    dispatch(toggleFormCategory());
+    setMassage(null);
+    setIsLoading(false);
+    setImageUrl(null);
+  };
+
   return (
     <div
       className={`${styles.form_container} ${
