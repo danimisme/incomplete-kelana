@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import useUpload from "@/services/useUpload";
 import useUpdate from "@/services/useUpdate";
 import styles from "./DetailBannerPage.module.css";
+import Link from "next/link";
 
 export default function DetailBannerPage({ params }) {
   const { getData } = useGetData();
@@ -93,6 +94,9 @@ export default function DetailBannerPage({ params }) {
             <button className="btn btn-success" disabled={isLoading}>
               Edit
             </button>
+            <Link href="/dashboard/banner">
+              <button className="btn btn-secondary ms-2">Back</button>
+            </Link>
           </form>
         </div>
       </div>
