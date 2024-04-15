@@ -5,6 +5,7 @@ import useGetData from "@/services/useGetData";
 import { useEffect, useState } from "react";
 import useUpload from "@/services/useUpload";
 import useUpdate from "@/services/useUpdate";
+import styles from "./DetailBannerPage.module.css";
 
 export default function DetailBannerPage({ params }) {
   const { getData } = useGetData();
@@ -60,13 +61,13 @@ export default function DetailBannerPage({ params }) {
 
   return (
     <div className="mt-5 container-lg">
-      <div className="row py-3">
+      <div className="row py-3 align-items-center">
         <h1 className="mb-3 text-center">Edit Banner</h1>
         <div className="col-lg-6 col-10">
           <img
             src={bannerImageUrl || banner?.imageUrl}
             alt={banner?.title}
-            className="img-fluid"
+            className={` ${styles.image}`}
           />
         </div>
         <div className="col-lg-6 col-10">
