@@ -1,5 +1,6 @@
 import Input from "@/components/Elements/input/Input";
 import Label from "@/components/Elements/input/Label";
+import styles from "./CreatePromoPage.module.css";
 
 export default function CreatePromoPage() {
   return (
@@ -37,7 +38,13 @@ export default function CreatePromoPage() {
           </div>
         </div>
         <div className="col-lg-6 col-10">
-          <img src={"/images/pngtree-image-upload.jpg"} alt="" />
+          <div className="mb-3 text-center">
+            <img
+              src={"/images/pngtree-image-upload.jpg"}
+              alt=""
+              className={styles.image}
+            />
+          </div>
           <div className="my-3">
             <Label htmlFor="imageUrl">Image File</Label>
             <Input id="imageUrl" name="imageUrl" type="file" />
