@@ -6,6 +6,7 @@ import Label from "@/components/Elements/input/Label";
 import Input from "@/components/Elements/input/Input";
 import { toggleFormCategory } from "@/redux/slices/FormCategorySlice";
 import { useDispatch, useSelector } from "react-redux";
+import useUpload from "@/services/useUpload";
 
 export default function FormCategory() {
   const dispatch = useDispatch();
@@ -15,11 +16,37 @@ export default function FormCategory() {
   const [imageUrl, setImageUrl] = useState(null);
   const [massage, setMassage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { upload } = useUpload();
   const handleCloseForm = () => {
     dispatch(toggleFormCategory());
     setMassage(null);
     setIsLoading(false);
     setImageUrl(null);
+  };
+
+  const handleFileChange = async (e) => {
+    setIsLoading(true);
+    const file = e.target.files[0];
+    if (!file.type.startsWith("image/")) {
+      setMassage(
+        "File harus berupa gambar dengan format JPEG, PNG, GIF, BMP, atau TIFF."
+      );
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await upload("upload-image", formData);
+      setImageUrl(res.data.url);
+      setIsLoading(false);
+      setMassage(null);
+      return res.data.url;
+    } catch (error) {
+      setMassage("Failed to upload image, try another image.");
+      console.log(error);
+    }
   };
 
   return (
@@ -43,7 +70,12 @@ export default function FormCategory() {
         </div>
         <div className="mb-3">
           <Label htmlFor="image">Image File</Label>
-          <Input type="file" name="image" id="image" />
+          <Input
+            type="file"
+            name="image"
+            id="image"
+            onChange={handleFileChange}
+          />
         </div>
         <div className="mb-3">
           <Label htmlFor="name">Name</Label>
@@ -51,7 +83,7 @@ export default function FormCategory() {
         </div>
         {massage && <p className="text-danger">{massage}</p>}
         <button className="btn btn-outline-success" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Submit"}
+          Create
         </button>
       </form>
     </div>
