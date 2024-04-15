@@ -1,5 +1,6 @@
 "use client";
 import useGetData from "@/services/useGetData";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function ActivityPage() {
   const { getData } = useGetData();
@@ -37,9 +38,11 @@ export default function ActivityPage() {
                   </td>
                   <td>{activity.category.name}</td>
                   <td>
-                    <button className="btn btn-outline-success me-2 my-2">
-                      Edit
-                    </button>
+                    <Link href={`/dashboard/activity/${activity.id}`}>
+                      <button className="btn btn-outline-success me-2 my-2">
+                        Edit
+                      </button>
+                    </Link>
                     <button className="btn btn-outline-danger">Delete</button>
                   </td>
                 </tr>
