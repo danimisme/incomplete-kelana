@@ -43,20 +43,20 @@ export default function BannerPage() {
               <i className="bi bi-plus-circle me-2"></i> Create Banner
             </button>
           </h1>
-          <table className="table">
+          <table className="table table-striped table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Picture</th>
-                <th scope="col" colSpan={3} className="text-center">
+                <th scope="col" className="text-center">
                   Action
                 </th>
               </tr>
             </thead>
-            {banners.map((banner, index) => (
-              <tbody key={banner.id}>
-                <tr>
+            <tbody>
+              {banners.map((banner, index) => (
+                <tr key={banner.id}>
                   <th scope="row">{index + 1}</th>
                   <td>{banner.name}</td>
                   <td>
@@ -66,12 +66,15 @@ export default function BannerPage() {
                       className={` ${styles.image} `}
                     />
                   </td>
-                  <td>
-                    <Link href={`/dashboard/banner/${banner.id}`}>
-                      <button className="btn btn-outline-info">Edit</button>
+                  <td className="text-center">
+                    <Link
+                      href={`/dashboard/banner/${banner.id}`}
+                      className="me-2"
+                    >
+                      <button className="btn btn-outline-info my-2">
+                        Edit
+                      </button>
                     </Link>
-                  </td>
-                  <td>
                     <button
                       className="btn btn-outline-danger"
                       onClick={() => handleDelete(banner.id)}
@@ -80,8 +83,8 @@ export default function BannerPage() {
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            ))}
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
