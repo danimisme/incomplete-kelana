@@ -4,6 +4,7 @@ import Label from "@/components/Elements/input/Label";
 import styles from "./CreatePromoPage.module.css";
 import useUpload from "@/services/useUpload";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function CreatePromoPage() {
   const { upload } = useUpload();
@@ -89,6 +90,9 @@ export default function CreatePromoPage() {
           <button className="btn btn-primary" disabled={isLoading}>
             Create Promo
           </button>
+          <Link href="/dashboard/promo">
+            <button className="btn btn-danger ms-2">Cancel</button>
+          </Link>
         </div>
       </div>
     </div>
