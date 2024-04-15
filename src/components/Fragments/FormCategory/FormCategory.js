@@ -44,7 +44,32 @@ export default function FormCategory() {
       setMassage(null);
       return res.data.url;
     } catch (error) {
-      setMassage("Failed to upload image, try another image.");
+      setMassage(
+        "Failed to upload image, Maybe the image is too big, try another image."
+      );
+      console.log(error);
+    }
+  };
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    if (!imageUrl || !e.target.name.value) {
+      setMassage("Please fill in all required fields");
+      return;
+    }
+
+    setIsLoading(true);
+    const categoryData = {
+      name: e.target.name.value,
+      imageUrl: imageUrl,
+    };
+    try {
+      const res = await upload("create-category", categoryData);
+      if (res.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      setMassage("Failed to create category");
       console.log(error);
     }
   };
@@ -55,7 +80,7 @@ export default function FormCategory() {
         isFormCategoryOpen ? styles.show : styles.hide
       }`}
     >
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleCreate}>
         <i
           className={`${styles.close_btn} bi bi-x-circle fs-3`}
           onClick={() => handleCloseForm()}
