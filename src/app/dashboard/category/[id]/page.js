@@ -65,9 +65,9 @@ export default function DetailCategoryPage({ params }) {
 
   return (
     <div className="mt-5 container-lg">
-      <div className="row py-3">
+      <div className="row py-3 align-items-center">
         <h1 className="mb-3 text-center">Edit Category</h1>
-        <div className="col-lg-6 col-6 mx-auto ">
+        <div className="col-lg-6 col-10 mx-auto ">
           <img
             src={categoryImageUrl || category?.imageUrl}
             alt={category?.title}
