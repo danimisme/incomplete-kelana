@@ -6,7 +6,7 @@ export default function CardActivity({ activity }) {
     <Link href={`/activity/${activity.id}`}>
       <div className="card">
         <img
-          src={activity.imageUrls}
+          src={activity.imageUrls[0]}
           className={` ${styles.img} card-img-top`}
           alt="..."
         />

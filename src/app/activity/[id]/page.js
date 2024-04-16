@@ -66,7 +66,6 @@ export default function DetailActivityPage({ params }) {
           <h2>Information</h2>
           <div className=" col-10 mt-3">
             <p>
-              {" "}
               <span className="fw-bold"> Description : </span>{" "}
               {activity.description}
             </p>
