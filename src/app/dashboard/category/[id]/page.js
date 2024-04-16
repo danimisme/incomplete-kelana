@@ -14,7 +14,7 @@ export default function DetailCategoryPage({ params }) {
   const [isLoading, setIsLoading] = useState(false);
   const { upload } = useUpload();
   const [categoryImageUrl, setCategoryImageUrl] = useState(null);
-  const [massage, setMassage] = useState(null);
+  const [message, setMessage] = useState(null);
   const { update } = useUpdate();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function DetailCategoryPage({ params }) {
     const file = e.target.files[0];
 
     if (!file.type.startsWith("image/")) {
-      setMassage(
+      setMessage(
         "File harus berupa gambar dengan format JPEG, PNG, GIF, BMP, atau TIFF."
       );
       return;
@@ -40,7 +40,7 @@ export default function DetailCategoryPage({ params }) {
       const res = await upload("upload-image", formData);
       setCategoryImageUrl(res.data.url);
       setIsLoading(false);
-      setMassage(null);
+      setMessage(null);
       return res.data.url;
     } catch (error) {
       console.log(error);
@@ -93,7 +93,7 @@ export default function DetailCategoryPage({ params }) {
               </Label>
               <Input type="file" id="image" onChange={handleFileChange} />
             </div>
-            {massage && <p className="text-danger">{massage}</p>}
+            {message && <p className="text-danger">{message}</p>}
             <button className="btn btn-success" disabled={isLoading}>
               Edit
             </button>
