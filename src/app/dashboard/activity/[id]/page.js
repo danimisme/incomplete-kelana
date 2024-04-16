@@ -4,6 +4,7 @@ import useGetData from "@/services/useGetData";
 import Label from "@/components/Elements/input/Label";
 import Input from "@/components/Elements/input/Input";
 import Link from "next/link";
+import styles from "./DetailActivityPage.module.css";
 
 export default function DetailActivityPage({ params }) {
   const [activity, setActivity] = useState({});
@@ -71,7 +72,7 @@ export default function DetailActivityPage({ params }) {
                 <img
                   src={imageUrl}
                   alt={`Image ${index + 1}`}
-                  className="img-fluid"
+                  className={styles.image}
                 />
               </div>
             ))}
