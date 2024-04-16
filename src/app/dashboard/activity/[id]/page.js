@@ -10,7 +10,8 @@ export default function DetailActivityPage({ params }) {
   const [activity, setActivity] = useState({});
   const { getData } = useGetData();
   const [imageUrls, setImageUrls] = useState([]);
-  console.log(activity);
+  const [file, setFile] = useState(null);
+  const [massageImage, setMassageImage] = useState(null);
   useEffect(() => {
     getData(`activity/${params.id}`).then((res) => {
       setActivity(res.data.data);
@@ -22,6 +23,16 @@ export default function DetailActivityPage({ params }) {
     const newImageUrls = [...imageUrls];
     newImageUrls.splice(index, 1);
     setImageUrls(newImageUrls);
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+    if (!file.type.startsWith("image/")) {
+      setMassageImage(
+        "File harus berupa gambar dengan format JPEG, PNG, GIF, BMP, atau TIFF"
+      );
+    }
   };
 
   return (
@@ -93,11 +104,11 @@ export default function DetailActivityPage({ params }) {
 
           <div className="mb-3">
             <Label htmlFor="imageUrls">Image Files</Label>
-            <Input id="imageUrls" type="file" />
+            <Input id="imageUrls" type="file" onChange={handleFileChange} />
           </div>
           <div className="mb-3">
+            {massageImage && <p className="text-danger">{massageImage}</p>}
             <button className="btn btn-outline-success me-2">Add Image</button>
-            <button className="btn btn-outline-danger">Remove Image</button>
           </div>
           <div className="mb-3">
             <Label htmlFor="address">Address</Label>
