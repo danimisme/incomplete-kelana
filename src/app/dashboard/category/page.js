@@ -6,10 +6,24 @@ import { useEffect, useState } from "react";
 import { toggleFormCategory } from "@/redux/slices/FormCategorySlice";
 import { useDispatch } from "react-redux";
 import styles from "./CategoryPage.module.css";
+import useDelete from "@/services/useDelete";
 export default function CategoryPage() {
   const { getData } = useGetData();
   const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
+  const { deleteData } = useDelete();
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteData(`delete-category/${id}`);
+      if (res.status === 200) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getData("categories").then((res) => setCategories(res.data.data));
   }, []);
@@ -56,7 +70,12 @@ export default function CategoryPage() {
                     >
                       <button className="btn btn-outline-success ">Edit</button>
                     </Link>
-                    <button className="btn btn-outline-danger">Delete</button>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => handleDelete(category.id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}

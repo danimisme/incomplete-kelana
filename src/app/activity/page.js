@@ -29,6 +29,10 @@ export default function ActivityPage() {
   const handleFilter = async () => {
     const select = document.getElementById("select_categories");
     const value = select.value;
+    if (value === "Select") {
+      handleReset();
+      return;
+    }
     getData(`activities-by-category/${value}`).then((res) =>
       setActivities(res.data.data)
     );

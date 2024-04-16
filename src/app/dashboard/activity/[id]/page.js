@@ -6,6 +6,7 @@ import Input from "@/components/Elements/input/Input";
 import Link from "next/link";
 import styles from "./DetailActivityPage.module.css";
 import useUpload from "@/services/useUpload";
+import useUpdate from "@/services/useUpdate";
 
 export default function DetailActivityPage({ params }) {
   const [activity, setActivity] = useState({});
@@ -15,6 +16,7 @@ export default function DetailActivityPage({ params }) {
   const { upload } = useUpload();
   const [massageImage, setMassageImage] = useState(null);
   const [isLoadingImage, setIsLoadingImage] = useState(false);
+  const { update } = useUpdate();
   useEffect(() => {
     getData(`activity/${params.id}`).then((res) => {
       setActivity(res.data.data);
