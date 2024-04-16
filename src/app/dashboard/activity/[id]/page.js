@@ -7,6 +7,7 @@ import Link from "next/link";
 import styles from "./DetailActivityPage.module.css";
 import useUpload from "@/services/useUpload";
 import useUpdate from "@/services/useUpdate";
+import SelectOption from "@/components/Elements/SelectOption/SelectOption";
 
 export default function DetailActivityPage({ params }) {
   const [activity, setActivity] = useState({});
@@ -16,14 +17,18 @@ export default function DetailActivityPage({ params }) {
   const { upload } = useUpload();
   const [massageImage, setMassageImage] = useState(null);
   const [isLoadingImage, setIsLoadingImage] = useState(false);
+  const [categories, setCategories] = useState([]);
   const { update } = useUpdate();
   useEffect(() => {
     getData(`activity/${params.id}`).then((res) => {
       setActivity(res.data.data);
       setImageUrls(res.data.data.imageUrls);
     });
-  }, []);
 
+    getData("categories").then((res) => setCategories(res.data.data));
+  }, []);
+  console.log(activity);
+  console.log(activity.categoryId);
   const handleRemoveImage = (index) => {
     const newImageUrls = [...imageUrls];
     newImageUrls.splice(index, 1);
@@ -67,6 +72,14 @@ export default function DetailActivityPage({ params }) {
           <div className="mb-3">
             <Label htmlFor="title">Title</Label>
             <Input id="title" defaultValue={activity?.title} />
+          </div>
+          <div className="mb-3">
+            <Label htmlFor="category">Category</Label>
+            <SelectOption
+              selectItems={categories}
+              id="select-categories"
+              defaultValue={activity?.categoryId}
+            />
           </div>
           <div className="mb-3">
             <Label htmlFor="description">Description</Label>
