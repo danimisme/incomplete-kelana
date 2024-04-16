@@ -18,6 +18,12 @@ export default function DetailActivityPage({ params }) {
     });
   }, []);
 
+  const handleRemoveImage = (index) => {
+    const newImageUrls = [...imageUrls];
+    newImageUrls.splice(index, 1);
+    setImageUrls(newImageUrls);
+  };
+
   return (
     <div className="container-lg mt-5">
       <div className="row py-5">
@@ -68,12 +74,19 @@ export default function DetailActivityPage({ params }) {
         <div className="col-lg-6 col-10 mx-auto">
           <div className="row mb-3">
             {imageUrls.map((imageUrl, index) => (
-              <div className="col-6" key={index}>
+              <div className={`col-5 ${styles.image_container}`} key={index}>
                 <img
                   src={imageUrl}
                   alt={`Image ${index + 1}`}
                   className={styles.image}
                 />
+                <div
+                  className={styles.icon_remove}
+                  onClick={() => handleRemoveImage(index)}
+                >
+                  <p className="p-0 m-0">Remove</p>
+                  <i className={`bi bi-x-square-fill text-danger`}></i>
+                </div>
               </div>
             ))}
           </div>
