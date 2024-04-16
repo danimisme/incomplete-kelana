@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CardActivity from "@/components/Fragments/CardActivity/CardActivity";
 import styles from "./ActivityPage.module.css";
 import { Gabarito } from "next/font/google";
+import SelectOption from "@/components/Elements/SelectOption/SelectOption";
 
 const gabarito = Gabarito({
   subsets: ["latin"],
@@ -64,16 +65,7 @@ export default function ActivityPage() {
             <p className="m-0">Filter By Category</p>
           </div>
           <div className="col-5">
-            <select className="form-select" id="select_categories">
-              <option value="Select">Select</option>
-              {categories.map((category) => {
-                return (
-                  <option value={category.id} key={category.id}>
-                    {category.name}
-                  </option>
-                );
-              })}
-            </select>
+            <SelectOption selectItems={categories} id="select_categories" />
           </div>
         </div>
         <div className="d-flex gap-3">
