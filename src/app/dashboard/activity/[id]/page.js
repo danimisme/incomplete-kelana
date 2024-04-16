@@ -5,13 +5,16 @@ import Label from "@/components/Elements/input/Label";
 import Input from "@/components/Elements/input/Input";
 import Link from "next/link";
 import styles from "./DetailActivityPage.module.css";
+import useUpload from "@/services/useUpload";
 
 export default function DetailActivityPage({ params }) {
   const [activity, setActivity] = useState({});
   const { getData } = useGetData();
   const [imageUrls, setImageUrls] = useState([]);
   const [file, setFile] = useState(null);
+  const { upload } = useUpload();
   const [massageImage, setMassageImage] = useState(null);
+  const [isLoadingImage, setIsLoadingImage] = useState(false);
   useEffect(() => {
     getData(`activity/${params.id}`).then((res) => {
       setActivity(res.data.data);
@@ -32,6 +35,25 @@ export default function DetailActivityPage({ params }) {
       setMassageImage(
         "File harus berupa gambar dengan format JPEG, PNG, GIF, BMP, atau TIFF"
       );
+    }
+  };
+
+  const handleUpload = async () => {
+    setIsLoadingImage(true);
+    if (!file) {
+      setMassageImage("Please select an image file");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("image", file);
+    try {
+      const res = await upload("upload-image", formData);
+      setImageUrls([...imageUrls, res.data.url]);
+      setIsLoadingImage(false);
+      setMassageImage(null);
+      return res.data.url;
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -108,7 +130,12 @@ export default function DetailActivityPage({ params }) {
           </div>
           <div className="mb-3">
             {massageImage && <p className="text-danger">{massageImage}</p>}
-            <button className="btn btn-outline-success me-2">Add Image</button>
+            <button
+              className="btn btn-outline-success me-2"
+              onClick={handleUpload}
+            >
+              Add Image
+            </button>
           </div>
           <div className="mb-3">
             <Label htmlFor="address">Address</Label>
