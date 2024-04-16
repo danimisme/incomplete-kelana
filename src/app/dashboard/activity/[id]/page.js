@@ -104,7 +104,12 @@ export default function DetailActivityPage({ params }) {
           </div>
           <div className="mb-3">
             <Label htmlFor="location_maps">Location Maps</Label>
-            <textarea id="location_maps" rows="3" className="form-control" />
+            <textarea
+              id="location_maps"
+              rows="3"
+              className="form-control"
+              defaultValue={activity?.location_maps}
+            />
           </div>
           <div className="mb-3">
             <button className="btn btn-success me-2">Edit Activity</button>
