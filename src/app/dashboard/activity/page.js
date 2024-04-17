@@ -2,9 +2,18 @@
 import useGetData from "@/services/useGetData";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import useDelete from "@/services/useDelete";
 export default function ActivityPage() {
   const { getData } = useGetData();
   const [activities, setActivities] = useState([]);
+  const { deleteData } = useDelete();
+  const handleDelete = (id) => {
+    deleteData(`delete-activity/${id}`).then((res) => {
+      if (res.status === 200) {
+        window.location.reload();
+      }
+    });
+  };
 
   useEffect(() => {
     getData("activities").then((res) => setActivities(res.data.data));
@@ -43,7 +52,12 @@ export default function ActivityPage() {
                         Edit
                       </button>
                     </Link>
-                    <button className="btn btn-outline-danger">Delete</button>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => handleDelete(activity.id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
