@@ -28,7 +28,6 @@ export default function DetailActivityPage({ params }) {
     getData("categories").then((res) => setCategories(res.data.data));
   }, []);
   console.log(activity);
-  console.log(activity.categoryId);
   const handleRemoveImage = (index) => {
     const newImageUrls = [...imageUrls];
     newImageUrls.splice(index, 1);
