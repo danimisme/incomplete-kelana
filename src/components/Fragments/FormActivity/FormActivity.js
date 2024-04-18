@@ -95,7 +95,7 @@ export default function FormActivity({ activity, onSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="row py-5">
-        <h1>Detail Activity</h1>
+        <h1>{activity ? "Edit Activity" : "Create Activity"}</h1>
         <div className="col-lg-6 col-10 mx-auto">
           <div className="mb-3">
             <Label htmlFor="title">Title</Label>
