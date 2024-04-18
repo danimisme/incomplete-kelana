@@ -22,7 +22,16 @@ export default function ActivityPage() {
     <div className="mt-5 container-lg">
       <div className="row py-5">
         <div className="col-lg-10 col-10 mx-auto">
-          <h1>Activity Data</h1>
+          <div className="d-flex mb-3 align-items-center">
+            <h1>Activity Data</h1>
+            <Link href={`/dashboard/activity/create-activity`}>
+              <button className="btn btn-outline-success ms-2">
+                <i class="bi bi-plus-circle me-2"></i>
+                Create Activity
+              </button>
+            </Link>
+          </div>
+
           <table className="table table-striped table-bordered">
             <thead>
               <tr>
