@@ -1,0 +1,26 @@
+.image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 5%;
+}
+
+.image_container {
+    position: relative;
+    padding: 0;
+    margin: 10px;
+}
+
+.icon_remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: rgba(252, 252, 252, 0.8);
+    color: black;
+    border-radius: 10%;
+    display: flex;
+    gap : 5px;
+    align-items: center;
+    padding: 5px;
+}
