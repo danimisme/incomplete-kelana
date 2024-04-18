@@ -16,19 +16,33 @@ export default function EditUserForm({ user }) {
   const { upload } = useUpload();
   const { update } = useUpdate();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [massageImage, setMassageImage] = useState(null);
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const file = e.target.files[0];
+    setFile(file);
+    if (!file.type.startsWith("image/")) {
+      setIsLoading(true);
+      setMassageImage(
+        "File harus berupa gambar dengan format JPEG, PNG, GIF, BMP, atau TIFF"
+      );
+    } else {
+      setIsLoading(false);
+      setMassageImage(null);
+    }
   };
 
   const handleUpload = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData();
     formData.append("image", file);
     try {
       const res = await upload("upload-image", formData);
       setProfilePictureUrl(res.data.url);
-      console.log(res.data.url);
+      setIsLoading(false);
+      setMassageImage(null);
       return res.data.url;
     } catch (error) {
       console.log(error);
@@ -84,7 +98,14 @@ export default function EditUserForm({ user }) {
               id="profilePictureUrl"
               onChange={handleFileChange}
             />
-            <button className="btn btn-success mt-3" onClick={handleUpload}>
+            {massageImage && (
+              <p className="text-danger small">{massageImage}</p>
+            )}
+            <button
+              className="btn btn-success"
+              onClick={handleUpload}
+              disabled={isLoading}
+            >
               Upload
             </button>
           </div>
@@ -111,7 +132,9 @@ export default function EditUserForm({ user }) {
             defaultValue={user?.phoneNumber}
           />
         </div>
-        <button className="btn btn-success">Submit</button>
+        <button className="btn btn-success" type="submit" disabled={isLoading}>
+          Submit
+        </button>
       </form>
     </div>
   );
