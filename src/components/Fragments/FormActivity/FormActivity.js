@@ -208,7 +208,9 @@ export default function FormActivity({ activity, onSubmit }) {
             />
           </div>
           <div className="mb-3">
-            <button className="btn btn-success me-2">Edit Activity</button>
+            <button className="btn btn-success me-2">
+              {activity ? "Update Activity" : "Create Activity"}
+            </button>
             <Link href={`/dashboard/activity`}>
               <button className="btn btn-secondary">Cancel</button>
             </Link>
